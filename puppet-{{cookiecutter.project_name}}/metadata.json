@@ -1,0 +1,33 @@
+{
+  "name": "puppet-{{cookiecutter.project_name}}",
+  "version": "{{cookiecutter.version}}",
+  "author": "Puppet Labs and StackForge Contributors",
+  "summary": "Puppet module for OpenStack {{cookiecutter.project_name}}",
+  "license": "Apache-2.0",
+  "source": "git://github.com/stackforge/puppet-{{cookiecutter.project_name}}.git",
+  "project_page": "https://launchpad.net/puppet-{{cookiecutter.project_name}}",
+  "issues_url": "https://bugs.launchpad.net/puppet-{{cookiecutter.project_name}}",
+  "description": "Installs and configures OpenStack {{cookiecutter.project_name}}.",
+  "dependencies": [
+    { "name": "puppetlabs/stdlib", "version_requirement": ">= 4.0.0 <5.0.0" },
+    { "name": "stackforge/openstacklib", "version_requirement": ">=5.0.0 <6.0.0" }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": ["7"]
+    },
+    {
+      "operatingsystem": "Fedora",
+      "operatingsystemrelease": ["20"]
+    },
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": ["6.5","7"]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": ["12.04","14.04"]
+    }
+  ]
+}
