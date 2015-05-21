@@ -17,14 +17,20 @@
 #     DEFAULT/bar:
 #       value: barValue
 #
+# [*{{cookiecutter.project_name}}_api_paste_ini_config*]
+#   (optional) Allow configuration of /etc/{{cookiecutter.project_name}}/api-paste.ini configurations.
+#
 #   NOTE: The configuration MUST NOT be already handled by this module
 #   or Puppet catalog compilation will fail with duplicate resources.
 #
 class {{cookiecutter.project_name}}::config (
-  ${{cookiecutter.project_name}}_config  = {},
+  ${{cookiecutter.project_name}}_config               = {},
+  ${{cookiecutter.project_name}}_api_paste_ini_config = {},
 ) {
 
   validate_hash(${{cookiecutter.project_name}}_config)
+  validate_hash(${{cookiecutter.project_name}}_api_paste_ini_config)
 
   create_resources('{{cookiecutter.project_name}}_config', ${{cookiecutter.project_name}}_config)
+  create_resources('{{cookiecutter.project_name}}_api_paste_ini_config', ${{cookiecutter.project_name}}_api_paste_ini_config)
 }
