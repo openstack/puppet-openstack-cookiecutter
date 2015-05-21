@@ -13,12 +13,11 @@ There are two ways to create the boilerplate for the puppet module.
 ### Locally
 
   1. Clone locally the [cookiecutter-openstack-puppet-modules](https://github.com/enovance/cookiecutter-openstack-puppet-modules.git) repository.
-  3. Run `cookiecutter /path/to/cloned/repo`
+  2. Run `cookiecutter /path/to/cloned/repo`
 
 ### Remotely (ie. using a git repo)
 
-  1. Fork the [cookiecutter-openstack-puppet-modules](https://github.com/enovance/cookiecutter-openstack-puppet-modules.git) repo
-  3. Run `cookiecutter https://url.to.your.fork/`
+  1. Run `cookiecutter https://github.com/enovance/cookiecutter-openstack-puppet-modules.git`
 
 ## What's next
 
