@@ -1,4 +1,4 @@
 {
-    "project_name": "YOURPROJECTNAME",
-    "version": "X.X.X"
+    "project_name": "YOURPROJECTNAME without 'puppet-'",
+    "version": "0.0.1",
 }
