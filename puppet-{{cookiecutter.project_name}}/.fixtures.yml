@@ -1,6 +1,6 @@
 fixtures:
   repositories:
-    'stdlib': 'https://github.com/puppetlabs/puppetlabs-stdlib.git'
+    'stdlib': 'git://github.com/puppetlabs/puppetlabs-stdlib.git'
     'openstacklib': 'git://github.com/stackforge/puppet-openstacklib.git'
   symlinks:
     {{cookiecutter.project_name}}: "#{source_dir}"
