@@ -18,7 +18,7 @@ provider_class = Puppet::Type.type(:{{cookiecutter.project_name}}_config).provid
 describe provider_class do
 
   it 'should default to the default setting when no other one is specified' do
-    resource = Puppet::Type::{{cookiecutter.project_name}}_config.new(
+    resource = Puppet::Type::{{cookiecutter.project_name|capitalize}}_config.new(
       {:name => 'DEFAULT/foo', :value => 'bar'}
     )
     provider = provider_class.new(resource)
@@ -27,7 +27,7 @@ describe provider_class do
   end
 
   it 'should allow setting to be set explicitly' do
-    resource = Puppet::Type::{{cookiecutter.project_name}}_config.new(
+    resource = Puppet::Type::{{cookiecutter.project_name|capitalize}}_config.new(
       {:name => 'dude/foo', :value => 'bar'}
     )
     provider = provider_class.new(resource)

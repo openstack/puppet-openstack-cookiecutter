@@ -6,7 +6,7 @@ class {{cookiecutter.project_name}}::db::sync {
     path        => '/usr/bin',
     user        => '{{cookiecutter.project_name}}',
     refreshonly => true,
-    subscribe   => [Package['{{cookiecutter.project_name}}'], {{cookiecutter.project_name}}_config['database/connection']],
+    subscribe   => [Package['{{cookiecutter.project_name}}'], {{cookiecutter.project_name|capitalize}}_config['database/connection']],
     require     => User['{{cookiecutter.project_name}}'],
   }
 
