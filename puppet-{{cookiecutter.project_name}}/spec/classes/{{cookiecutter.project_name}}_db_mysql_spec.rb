@@ -15,14 +15,14 @@ describe '{{cookiecutter.project_name}}::db::mysql' do
 
   let :params do
     {
-      'password'      => '{{cookiecutter.project_name}}_default_password',
+      'password'      => 'fooboozoo_default_password',
     }
   end
 
   describe 'with only required params' do
     it { is_expected.to contain_openstacklib__db__mysql('{{cookiecutter.project_name}}').with(
       'user'          => '{{cookiecutter.project_name}}',
-      'password_hash' => '*B552157B14BCEDDCEAA06767A012F31BDAA9CE3D',
+      'password_hash' => '*3DDF34A86854A312A8E2C65B506E21C91800D206',
       'dbname'        => '{{cookiecutter.project_name}}',
       'host'          => '127.0.0.1',
       'charset'       => 'utf8',

@@ -29,7 +29,7 @@ describe '{{cookiecutter.project_name}}::keystone::auth' do
 
     it { is_expected.to contain_keystone_service('{{cookiecutter.project_name}}').with(
       :ensure      => 'present',
-      :type        => 'database',
+      :type        => 'FIXME',
       :description => '{{cookiecutter.project_name}} FIXME Service'
     ) }
 
