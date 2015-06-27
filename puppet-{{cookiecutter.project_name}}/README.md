@@ -10,7 +10,6 @@
 5. [Limitations - OS compatibility, etc.](#limitations)
 6. [Development - Guide for contributing to the module](#development)
 7. [Contributors - Those with commits](#contributors)
-8. [Release Notes - Notes on the most recent updates to the module](#release-notes)
 
 Overview
 --------
@@ -84,6 +83,3 @@ Contributors
 ------------
 
 * https://github.com/stackforge/puppet-{{cookiecutter.project_name}}/graphs/contributors
-
-Release Notes
--------------
