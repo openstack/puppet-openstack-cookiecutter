@@ -14,7 +14,7 @@
 Overview
 --------
 
-The {{cookiecutter.project_name}} module is a part of [Stackforge](https://github.com/stackfoge), an effort by the Openstack infrastructure team to provide continuous integration testing and code review for Openstack and Openstack community projects not part of the core software.  The module its self is used to flexibly configure and manage the FIXME service for Openstack.
+The {{cookiecutter.project_name}} module is a part of [OpenStack](https://github.com/openstack), an effort by the Openstack infrastructure team to provide continuous integration testing and code review for Openstack and Openstack community projects not part of the core software.  The module its self is used to flexibly configure and manage the FIXME service for Openstack.
 
 Module Description
 ------------------
@@ -43,6 +43,7 @@ class { '{{cookiecutter.project_name}}':
   verbose             => true,
   database_connection => 'mysql://{{cookiecutter.project_name}}_admin:super_secret_db_password@openstack-controller.example.com/{{cookiecutter.project_name}}',
 }
+```
 
 Implementation
 --------------
@@ -63,10 +64,10 @@ This module has beaker-rspec tests
 
 To run the tests on the default vagrant node:
 
-``shell
+```shell
 bundle install
 bundle exec rake acceptance
-``
+```
 
 For more information on writing and running beaker-rspec tests visit the documentation:
 
@@ -82,4 +83,4 @@ Developer documentation for the entire puppet-openstack project.
 Contributors
 ------------
 
-* https://github.com/stackforge/puppet-{{cookiecutter.project_name}}/graphs/contributors
+* https://github.com/openstack/puppet-{{cookiecutter.project_name}}/graphs/contributors

@@ -15,7 +15,7 @@ describe '{{cookiecutter.project_name}}::logging' do
       :logging_exception_prefix => '%(asctime)s.%(msecs)03d %(process)d TRACE %(name)s %(instance)s',
       :log_config_append => '/etc/{{cookiecutter.project_name}}/logging.conf',
       :publish_errors => true,
-      :default_log_levels => { 
+      :default_log_levels => {
         'amqp' => 'WARN', 'amqplib' => 'WARN', 'boto' => 'WARN',
         'qpid' => 'WARN', 'sqlalchemy' => 'WARN', 'suds' => 'INFO',
         'iso8601' => 'WARN',
