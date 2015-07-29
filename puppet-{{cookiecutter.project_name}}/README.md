@@ -26,24 +26,16 @@ Setup
 
 **What the {{cookiecutter.project_name}} module affects**
 
-* {{cookiecutter.project_name}}, the FIXME service for Openstack.
+* [{{cookiecutter.project_name|capitalize}}](https://wiki.openstack.org/wiki/{{cookiecutter.project_name|capitalize}}), the FIXME service for Openstack.
 
 ### Installing {{cookiecutter.project_name}}
 
-    example% puppet module install puppetlabs/{{cookiecutter.project_name}}
+    {{cookiecutter.project_name}} is not currently in Puppet Forge, but is anticipated to be added soon.  Once that happens, you'll be able to install {{cookiecutter.project_name}} with:
+    puppet module install openstack/{{cookiecutter.project_name}}
 
 ### Beginning with {{cookiecutter.project_name}}
 
 To utilize the {{cookiecutter.project_name}} module's functionality you will need to declare multiple resources.  The following is a modified excerpt from the [openstack module](https://github.com/stackfoge/puppet-openstack).  This is not an exhaustive list of all the components needed, we recommend you consult and understand the [openstack module](https://github.com/stackforge/puppet-openstack) and the [core openstack](http://docs.openstack.org) documentation.
-
-**Define a {{cookiecutter.project_name}} node**
-
-```puppet
-class { '{{cookiecutter.project_name}}':
-  verbose             => true,
-  database_connection => 'mysql://{{cookiecutter.project_name}}_admin:super_secret_db_password@openstack-controller.example.com/{{cookiecutter.project_name}}',
-}
-```
 
 Implementation
 --------------

@@ -2,12 +2,12 @@
   "name": "puppet-{{cookiecutter.project_name}}",
   "version": "{{cookiecutter.version}}",
   "author": "OpenStack Contributors",
-  "summary": "Puppet module for OpenStack {{cookiecutter.project_name}}",
+  "summary": "Puppet module for OpenStack {{cookiecutter.project_name|capitalize}}",
   "license": "Apache-2.0",
   "source": "git://github.com/openstack/puppet-{{cookiecutter.project_name}}.git",
   "project_page": "https://launchpad.net/puppet-{{cookiecutter.project_name}}",
   "issues_url": "https://bugs.launchpad.net/puppet-{{cookiecutter.project_name}}",
-  "description": "Installs and configures OpenStack {{cookiecutter.project_name}}.",
+  "description": "Installs and configures OpenStack {{cookiecutter.project_name|capitalize}}.",
   "operatingsystem_support": [
     {
       "operatingsystem": "Debian",
