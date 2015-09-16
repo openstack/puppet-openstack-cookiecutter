@@ -7,4 +7,8 @@
 # [*sample_parameter*]
 #   Explanation of what this parameter affects and what it defaults to.
 #
-class {{cookiecutter.project_name}} {}
+class {{cookiecutter.project_name}} {
+
+  include ::{{cookiecutter.project_name}}::params
+
+}
