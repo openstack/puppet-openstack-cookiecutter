@@ -34,7 +34,7 @@
 #   (Optional) Defaults to 20.
 #
 class {{cookiecutter.project_name}}::db (
-  $database_connection     = "sqlite:////var/lib/{{cookiecutter.project_name}}/{{cookiecutter.project_name}}.sqlite",
+  $database_connection     = 'sqlite:////var/lib/{{cookiecutter.project_name}}/{{cookiecutter.project_name}}.sqlite',
   $database_idle_timeout   = 3600,
   $database_min_pool_size  = 1,
   $database_max_pool_size  = 10,
@@ -73,7 +73,7 @@ class {{cookiecutter.project_name}}::db (
     }
 
     if $backend_package and !defined(Package[$backend_package]) {
-      package {"{{cookiecutter.project_name}}-backend-package":
+      package {'{{cookiecutter.project_name}}-backend-package':
         ensure => present,
         name   => $backend_package,
         tag    => 'openstack',
