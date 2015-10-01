@@ -1,8 +1,33 @@
 # Class {{cookiecutter.project_name}}::logging
 #
-#  {{cookiecutter.project_name}} extended logging configuration
+#  {{cookiecutter.project_name}} logging configuration
 #
 # == parameters
+#
+#  [*verbose*]
+#    (Optional) Should the daemons log verbose messages
+#    Defaults to false.
+#
+#  [*debug*]
+#    (Optional) Should the daemons log debug messages
+#    Defaults to false.
+#
+#  [*use_syslog*]
+#    (Optional) Use syslog for logging.
+#    Defaults to false.
+#
+#  [*use_stderr*]
+#    (optional) Use stderr for logging
+#    Defaults to true.
+#
+#  [*log_facility*]
+#    (Optional) Syslog facility to receive log lines.
+#    Defaults to 'LOG_USER'.
+#
+#  [*log_dir*]
+#    (optional) Directory where logs should be stored.
+#    If set to boolean false, it will not log to any directory.
+#    Defaults to '/var/log/{{cookiecutter.project_name}}'.
 #
 #  [*logging_context_format_string*]
 #    (optional) Format string to use for log messages with context.
@@ -62,13 +87,19 @@
 #               it like this (string value).
 #    Defaults to undef.
 #    Example: instance_uuid_format='[instance: %(uuid)s] '
-
+#
 #  [*log_date_format*]
 #    (optional) Format string for %%(asctime)s in log records.
 #    Defaults to undef.
 #    Example: 'Y-%m-%d %H:%M:%S'
 
 class {{cookiecutter.project_name}}::logging(
+  $use_syslog                    = false,
+  $use_stderr                    = true,
+  $log_facility                  = 'LOG_USER',
+  $log_dir                       = '/var/log/{{cookiecutter.project_name}}',
+  $verbose                       = false,
+  $debug                         = false,
   $logging_context_format_string = undef,
   $logging_default_format_string = undef,
   $logging_debug_format_suffix   = undef,
@@ -81,6 +112,15 @@ class {{cookiecutter.project_name}}::logging(
   $instance_uuid_format          = undef,
   $log_date_format               = undef,
 ) {
+
+  {{cookiecutter.project_name}}_config {
+    'DEFAULT/use_syslog'          : value => $use_syslog;
+    'DEFAULT/use_stderr'          : value => $use_stderr;
+    'DEFAULT/log_dir'             : value => $log_dir;
+    'DEFAULT/verbose'             : value => $verbose;
+    'DEFAULT/debug'               : value => $debug;
+    'DEFAULT/syslog_log_facility' : value => $log_facility;
+  }
 
   if $logging_context_format_string {
     {{cookiecutter.project_name}}_config {
