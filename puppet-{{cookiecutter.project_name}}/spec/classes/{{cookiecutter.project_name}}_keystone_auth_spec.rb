@@ -35,28 +35,25 @@ describe '{{cookiecutter.project_name}}::keystone::auth' do
 
     it { is_expected.to contain_keystone_endpoint('RegionOne/{{cookiecutter.project_name}}').with(
       :ensure       => 'present',
-      :public_url   => "http://127.0.0.1:FIXME/",
-      :admin_url    => "http://127.0.0.1:FIXME/",
-      :internal_url => "http://127.0.0.1:FIXME/"
+      :public_url   => 'http://127.0.0.1:FIXME',
+      :admin_url    => 'http://127.0.0.1:FIXME',
+      :internal_url => 'http://127.0.0.1:FIXME',
     ) }
   end
 
-  describe 'when overriding public_protocol, public_port and public address' do
+  describe 'when overriding URL paramaters' do
     let :params do
-      { :password         => '{{cookiecutter.project_name}}_password',
-        :public_protocol  => 'https',
-        :public_port      => '80',
-        :public_address   => '10.10.10.10',
-        :port             => '81',
-        :internal_address => '10.10.10.11',
-        :admin_address    => '10.10.10.12' }
+      { :password     => '{{cookiecutter.project_name}}_password',
+        :public_url   => 'https://10.10.10.10:80',
+        :internal_url => 'http://10.10.10.11:81',
+        :admin_url    => 'http://10.10.10.12:81', }
     end
 
     it { is_expected.to contain_keystone_endpoint('RegionOne/{{cookiecutter.project_name}}').with(
       :ensure       => 'present',
-      :public_url   => "https://10.10.10.10:80/",
-      :internal_url => "http://10.10.10.11:81/",
-      :admin_url    => "http://10.10.10.12:81/"
+      :public_url   => 'https://10.10.10.10:80',
+      :internal_url => 'http://10.10.10.11:81',
+      :admin_url    => 'http://10.10.10.12:81',
     ) }
   end
 
