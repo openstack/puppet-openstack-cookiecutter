@@ -70,7 +70,7 @@ Development
 
 Developer documentation for the entire puppet-openstack project.
 
-* https://wiki.openstack.org/wiki/Puppet-openstack#Developer_documentation
+* https://wiki.openstack.org/wiki/Puppet
 
 Contributors
 ------------
