@@ -28,31 +28,7 @@
 #   Defaults to 'true'.
 #
 # [*service_type*]
-#   Type of service. Defaults to 'FIXME'.
-#
-# [*public_protocol*]
-#   Protocol for public endpoint. Defaults to 'http'.
-#
-# [*public_address*]
-#   Public address for endpoint. Defaults to '127.0.0.1'.
-#
-# [*admin_protocol*]
-#   Protocol for admin endpoint. Defaults to 'http'.
-#
-# [*admin_address*]
-#   Admin address for endpoint. Defaults to '127.0.0.1'.
-#
-# [*internal_protocol*]
-#   Protocol for internal endpoint. Defaults to 'http'.
-#
-# [*internal_address*]
-#   Internal address for endpoint. Defaults to '127.0.0.1'.
-#
-# [*port*]
-#   Port for endpoint. Defaults to 'FIXME'.
-#
-# [*public_port*]
-#   Port for public endpoint. Defaults to $port.
+#   Type of service. Defaults to 'key-manager'.
 #
 # [*region*]
 #   Region for endpoint. Defaults to 'RegionOne'.
@@ -61,6 +37,16 @@
 #   (optional) Name of the service.
 #   Defaults to the value of auth_name.
 #
+# [*public_url*]
+#   (optional) The endpoint's public url. (Defaults to 'http://127.0.0.1:FIXME')
+#   This url should *not* contain any trailing '/'.
+#
+# [*admin_url*]
+#   (optional) The endpoint's admin url. (Defaults to 'http://127.0.0.1:FIXME')
+#   This url should *not* contain any trailing '/'.
+#
+# [*internal_url*]
+#   (optional) The endpoint's internal url. (Defaults to 'http://127.0.0.1:FIXME')
 #
 class {{cookiecutter.project_name}}::keystone::auth (
   $password,
@@ -72,15 +58,10 @@ class {{cookiecutter.project_name}}::keystone::auth (
   $configure_user_role = true,
   $service_name        = undef,
   $service_type        = 'FIXME',
-  $public_protocol     = 'http',
-  $public_address      = '127.0.0.1',
-  $admin_protocol      = 'http',
-  $admin_address       = '127.0.0.1',
-  $internal_protocol   = 'http',
-  $internal_address    = '127.0.0.1',
-  $port                = 'FIXME',
-  $public_port         = undef,
-  $region              = 'RegionOne'
+  $region              = 'RegionOne',
+  $public_url          = 'http://127.0.0.1:FIXME',
+  $admin_url           = 'http://127.0.0.1:FIXME',
+  $internal_url        = 'http://127.0.0.1:FIXME',
 ) {
 
   $real_service_name    = pick($service_name, $auth_name)
@@ -89,12 +70,6 @@ class {{cookiecutter.project_name}}::keystone::auth (
     Keystone_user_role["${auth_name}@${tenant}"] ~> Service <| name == '{{cookiecutter.project_name}}-server' |>
   }
   Keystone_endpoint["${region}/${real_service_name}"]  ~> Service <| name == '{{cookiecutter.project_name}}-server' |>
-
-  if ! $public_port {
-    $real_public_port = $port
-  } else {
-    $real_public_port = $public_port
-  }
 
   keystone::resource::service_identity { '{{cookiecutter.project_name}}':
     configure_user      => $configure_user,
@@ -108,9 +83,9 @@ class {{cookiecutter.project_name}}::keystone::auth (
     password            => $password,
     email               => $email,
     tenant              => $tenant,
-    public_url          => "${public_protocol}://${public_address}:${real_public_port}/",
-    internal_url        => "${internal_protocol}://${internal_address}:${port}/",
-    admin_url           => "${admin_protocol}://${admin_address}:${port}/",
+    public_url          => $public_url,
+    internal_url        => $internal_url,
+    admin_url           => $admin_url,
   }
 
 }
