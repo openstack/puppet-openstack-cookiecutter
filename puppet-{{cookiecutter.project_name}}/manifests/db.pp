@@ -62,7 +62,8 @@ class {{cookiecutter.project_name}}::db (
         require 'mysql::bindings::python'
       }
       /^postgresql:\/\//: {
-        $backend_package = $::{{cookiecutter.project_name}}::params::psycopg_package_name
+        $backend_package = false
+        require 'postgresql::lib::python'
       }
       /^sqlite:\/\//: {
         $backend_package = $::{{cookiecutter.project_name}}::params::sqlite_package_name
