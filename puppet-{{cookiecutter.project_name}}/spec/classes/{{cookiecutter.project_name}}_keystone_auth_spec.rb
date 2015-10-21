@@ -19,7 +19,6 @@ describe '{{cookiecutter.project_name}}::keystone::auth' do
     it { is_expected.to contain_keystone_user('{{cookiecutter.project_name}}').with(
       :ensure   => 'present',
       :password => '{{cookiecutter.project_name}}_password',
-      :tenant   => 'foobar'
     ) }
 
     it { is_expected.to contain_keystone_user_role('{{cookiecutter.project_name}}@foobar').with(
