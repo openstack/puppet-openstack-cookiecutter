@@ -47,7 +47,7 @@ describe '{{cookiecutter.project_name}}::db' do
 
     context 'with incorrect database_connection string' do
       let :params do
-        { :database_connection     => 'sqlite://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}', }
+        { :database_connection     => 'foodb://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}', }
       end
 
       it_raises 'a Puppet::Error', /validate_re/
