@@ -4,7 +4,7 @@ describe '{{cookiecutter.project_name}}::db' do
 
   shared_examples '{{cookiecutter.project_name}}::db' do
     context 'with default parameters' do
-      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/connection').with_value('mysql://{{cookiecutter.project_name}}:secrete@localhost:3306/{{cookiecutter.project_name}}') }
+      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/connection').with_value('sqlite:////var/lib/{{cookiecutter.project_name}}/{{cookiecutter.project_name}}.sqlite') }
       it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/idle_timeout').with_value('3600') }
       it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/min_pool_size').with_value('1') }
       it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/max_retries').with_value('10') }
