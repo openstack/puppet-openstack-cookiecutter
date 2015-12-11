@@ -43,10 +43,10 @@ class {{cookiecutter.project_name}}::db (
   $database_max_overflow   = $::os_service_default,
 ) {
 
-  validate_re($database_connection_real,
+  validate_re($database_connection,
     '(sqlite|mysql|postgresql):\/\/(\S+:\S+@\S+\/\S+)?')
 
-  case $database_connection_real {
+  case $database_connection {
     /^mysql:\/\//: {
       $backend_package = false
       require 'mysql::bindings'
@@ -73,13 +73,13 @@ class {{cookiecutter.project_name}}::db (
   }
 
   {{cookiecutter.project_name}}_config {
-    'database/connection':     value => $database_connection_real, secret => true;
-    'database/idle_timeout':   value => $database_idle_timeout_real;
-    'database/min_pool_size':  value => $database_min_pool_size_real;
-    'database/max_retries':    value => $database_max_retries_real;
-    'database/retry_interval': value => $database_retry_interval_real;
-    'database/max_pool_size':  value => $database_max_pool_size_real;
-    'database/max_overflow':   value => $database_max_overflow_real;
+    'database/connection':     value => $database_connection, secret => true;
+    'database/idle_timeout':   value => $database_idle_timeout;
+    'database/min_pool_size':  value => $database_min_pool_size;
+    'database/max_retries':    value => $database_max_retries;
+    'database/retry_interval': value => $database_retry_interval;
+    'database/max_pool_size':  value => $database_max_pool_size;
+    'database/max_overflow':   value => $database_max_overflow;
   }
 
 }
