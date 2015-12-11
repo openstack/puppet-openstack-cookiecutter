@@ -5,12 +5,12 @@ describe '{{cookiecutter.project_name}}::db' do
   shared_examples '{{cookiecutter.project_name}}::db' do
     context 'with default parameters' do
       it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/connection').with_value('sqlite:////var/lib/{{cookiecutter.project_name}}/{{cookiecutter.project_name}}.sqlite') }
-      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/idle_timeout').with_value('3600') }
-      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/min_pool_size').with_value('1') }
-      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/max_retries').with_value('10') }
-      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/retry_interval').with_value('10') }
-      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/max_pool_size').with_value('10') }
-      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/max_overflow').with_value('20') }
+      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/idle_timeout').with_value('<SERVICE DEFAULT>') }
+      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/min_pool_size').with_value('<SERVICE DEFAULT>') }
+      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/max_retries').with_value('<SERVICE DEFAULT>') }
+      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/retry_interval').with_value('<SERVICE DEFAULT>') }
+      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/max_pool_size').with_value('<SERVICE DEFAULT>') }
+      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/max_overflow').with_value('<SERVICE DEFAULT>') }
     end
 
     context 'with specific parameters' do
@@ -56,7 +56,8 @@ describe '{{cookiecutter.project_name}}::db' do
 
   context 'on Debian platforms' do
     let :facts do
-      { :osfamily => 'Debian',
+      @default_facts.merge({
+        :osfamily => 'Debian',
         :operatingsystem => 'Debian',
         :operatingsystemrelease => 'jessie',
       }
@@ -67,9 +68,10 @@ describe '{{cookiecutter.project_name}}::db' do
 
   context 'on Redhat platforms' do
     let :facts do
-      { :osfamily => 'RedHat',
+      @default_facts.merge({
+        :osfamily => 'RedHat',
         :operatingsystemrelease => '7.1',
-      }
+      })
     end
 
     it_configures '{{cookiecutter.project_name}}::db'

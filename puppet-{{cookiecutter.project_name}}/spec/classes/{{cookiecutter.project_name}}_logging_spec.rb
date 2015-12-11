@@ -57,12 +57,12 @@ describe '{{cookiecutter.project_name}}::logging' do
 
   shared_examples 'basic default logging settings' do
     it 'configures {{cookiecutter.project_name}} logging settins with default values' do
-      is_expected.to contain_{{cookiecutter.project_name}}_config('DEFAULT/use_syslog').with(:value => 'false')
-      is_expected.to contain_{{cookiecutter.project_name}}_config('DEFAULT/use_stderr').with(:value => 'true')
-      is_expected.to contain_{{cookiecutter.project_name}}_config('DEFAULT/syslog_log_facility').with(:value => 'LOG_USER')
+      is_expected.to contain_{{cookiecutter.project_name}}_config('DEFAULT/use_syslog').with(:value => '<SERVICE DEFAULT>')
+      is_expected.to contain_{{cookiecutter.project_name}}_config('DEFAULT/use_stderr').with(:value => '<SERVICE DEFAULT>')
+      is_expected.to contain_{{cookiecutter.project_name}}_config('DEFAULT/syslog_log_facility').with(:value => '<SERVICE DEFAULT>')
       is_expected.to contain_{{cookiecutter.project_name}}_config('DEFAULT/log_dir').with(:value => '/var/log/{{cookiecutter.project_name}}')
-      is_expected.to contain_{{cookiecutter.project_name}}_config('DEFAULT/verbose').with(:value => 'false')
-      is_expected.to contain_{{cookiecutter.project_name}}_config('DEFAULT/debug').with(:value => 'false')
+      is_expected.to contain_{{cookiecutter.project_name}}_config('DEFAULT/verbose').with(:value => '<SERVICE DEFAULT>')
+      is_expected.to contain_{{cookiecutter.project_name}}_config('DEFAULT/debug').with(:value => '<SERVICE DEFAULT>')
     end
   end
 
@@ -121,13 +121,13 @@ describe '{{cookiecutter.project_name}}::logging' do
      :default_log_levels, :fatal_deprecations,
      :instance_format, :instance_uuid_format,
      :log_date_format, ].each { |param|
-        it { is_expected.to contain_{{cookiecutter.project_name}}_config("DEFAULT/#{param}").with_ensure('absent') }
+        it { is_expected.to contain_{{cookiecutter.project_name}}_config("DEFAULT/#{param}").with_value('<SERVICE DEFAULT>') }
       }
   end
 
   context 'on Debian platforms' do
     let :facts do
-      { :osfamily => 'Debian' }
+      @default_facts.merge({ :osfamily => 'Debian' })
     end
 
     it_configures '{{cookiecutter.project_name}}-logging'
@@ -135,7 +135,7 @@ describe '{{cookiecutter.project_name}}::logging' do
 
   context 'on RedHat platforms' do
     let :facts do
-      { :osfamily => 'RedHat' }
+      @default_facts.merge({ :osfamily => 'RedHait' })
     end
 
     it_configures '{{cookiecutter.project_name}}-logging'
