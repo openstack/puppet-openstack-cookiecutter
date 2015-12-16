@@ -43,10 +43,18 @@ class {{cookiecutter.project_name}}::db (
   $database_max_overflow   = $::os_service_default,
 ) {
 
-  validate_re($database_connection,
+  $database_connection_real = pick($::{{cookiecutter.project_name}}::database_connection, $database_connection)
+  $database_idle_timeout_real = pick($::{{cookiecutter.project_name}}::database_idle_timeout, $database_idle_timeout)
+  $database_min_pool_size_real = pick($::{{cookiecutter.project_name}}::database_min_pool_size, $database_min_pool_size)
+  $database_max_pool_size_real = pick($::{{cookiecutter.project_name}}::database_max_pool_size, $database_max_pool_size)
+  $database_max_retries_real = pick($::{{cookiecutter.project_name}}::database_max_retries, $database_max_retries)
+  $database_retry_interval_real = pick($::{{cookiecutter.project_name}}::database_retry_interval, $database_retry_interval)
+  $database_max_overflow_real = pick($::{{cookiecutter.project_name}}::database_max_overflow, $database_max_overflow)
+
+  validate_re($database_connection_real,
     '(sqlite|mysql|postgresql):\/\/(\S+:\S+@\S+\/\S+)?')
 
-  case $database_connection {
+  case $database_connection_real {
     /^mysql:\/\//: {
       $backend_package = false
       require 'mysql::bindings'
@@ -73,13 +81,13 @@ class {{cookiecutter.project_name}}::db (
   }
 
   {{cookiecutter.project_name}}_config {
-    'database/connection':     value => $database_connection, secret => true;
-    'database/idle_timeout':   value => $database_idle_timeout;
-    'database/min_pool_size':  value => $database_min_pool_size;
-    'database/max_retries':    value => $database_max_retries;
-    'database/retry_interval': value => $database_retry_interval;
-    'database/max_pool_size':  value => $database_max_pool_size;
-    'database/max_overflow':   value => $database_max_overflow;
+    'database/connection':     value => $database_connection_real, secret => true;
+    'database/idle_timeout':   value => $database_idle_timeout_real;
+    'database/min_pool_size':  value => $database_min_pool_size_real;
+    'database/max_retries':    value => $database_max_retries_real;
+    'database/retry_interval': value => $database_retry_interval_real;
+    'database/max_pool_size':  value => $database_max_pool_size_real;
+    'database/max_overflow':   value => $database_max_overflow_real;
   }
 
 }
