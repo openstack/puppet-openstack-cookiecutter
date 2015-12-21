@@ -26,13 +26,12 @@ describe '{{cookiecutter.project_name}}::keystone::auth' do
       :roles   => ['admin']
     )}
 
-    it { is_expected.to contain_keystone_service('{{cookiecutter.project_name}}').with(
+    it { is_expected.to contain_keystone_service('{{cookiecutter.project_name}}::FIXME').with(
       :ensure      => 'present',
-      :type        => 'FIXME',
       :description => '{{cookiecutter.project_name}} FIXME Service'
     ) }
 
-    it { is_expected.to contain_keystone_endpoint('RegionOne/{{cookiecutter.project_name}}').with(
+    it { is_expected.to contain_keystone_endpoint('RegionOne/{{cookiecutter.project_name}}::FIXME').with(
       :ensure       => 'present',
       :public_url   => 'http://127.0.0.1:FIXME',
       :admin_url    => 'http://127.0.0.1:FIXME',
@@ -48,7 +47,7 @@ describe '{{cookiecutter.project_name}}::keystone::auth' do
         :admin_url    => 'http://10.10.10.12:81', }
     end
 
-    it { is_expected.to contain_keystone_endpoint('RegionOne/{{cookiecutter.project_name}}').with(
+    it { is_expected.to contain_keystone_endpoint('RegionOne/{{cookiecutter.project_name}}::FIXME').with(
       :ensure       => 'present',
       :public_url   => 'https://10.10.10.10:80',
       :internal_url => 'http://10.10.10.11:81',
@@ -64,8 +63,8 @@ describe '{{cookiecutter.project_name}}::keystone::auth' do
 
     it { is_expected.to contain_keystone_user('{{cookiecutter.project_name}}y') }
     it { is_expected.to contain_keystone_user_role('{{cookiecutter.project_name}}y@services') }
-    it { is_expected.to contain_keystone_service('{{cookiecutter.project_name}}y') }
-    it { is_expected.to contain_keystone_endpoint('RegionOne/{{cookiecutter.project_name}}y') }
+    it { is_expected.to contain_keystone_service('{{cookiecutter.project_name}}y::FIXME') }
+    it { is_expected.to contain_keystone_endpoint('RegionOne/{{cookiecutter.project_name}}y::FIXME') }
   end
 
   describe 'when overriding service name' do
@@ -77,8 +76,8 @@ describe '{{cookiecutter.project_name}}::keystone::auth' do
 
     it { is_expected.to contain_keystone_user('{{cookiecutter.project_name}}') }
     it { is_expected.to contain_keystone_user_role('{{cookiecutter.project_name}}@services') }
-    it { is_expected.to contain_keystone_service('{{cookiecutter.project_name}}_service') }
-    it { is_expected.to contain_keystone_endpoint('RegionOne/{{cookiecutter.project_name}}_service') }
+    it { is_expected.to contain_keystone_service('{{cookiecutter.project_name}}_service::FIXME') }
+    it { is_expected.to contain_keystone_endpoint('RegionOne/{{cookiecutter.project_name}}_service::FIXME') }
   end
 
   describe 'when disabling user configuration' do
@@ -92,9 +91,8 @@ describe '{{cookiecutter.project_name}}::keystone::auth' do
 
     it { is_expected.not_to contain_keystone_user('{{cookiecutter.project_name}}') }
     it { is_expected.to contain_keystone_user_role('{{cookiecutter.project_name}}@services') }
-    it { is_expected.to contain_keystone_service('{{cookiecutter.project_name}}').with(
+    it { is_expected.to contain_keystone_service('{{cookiecutter.project_name}}::FIXME').with(
       :ensure      => 'present',
-      :type        => 'FIXME',
       :description => '{{cookiecutter.project_name}} FIXME Service'
     ) }
 
@@ -112,9 +110,8 @@ describe '{{cookiecutter.project_name}}::keystone::auth' do
 
     it { is_expected.not_to contain_keystone_user('{{cookiecutter.project_name}}') }
     it { is_expected.not_to contain_keystone_user_role('{{cookiecutter.project_name}}@services') }
-    it { is_expected.to contain_keystone_service('{{cookiecutter.project_name}}').with(
+    it { is_expected.to contain_keystone_service('{{cookiecutter.project_name}}::FIXME').with(
       :ensure      => 'present',
-      :type        => 'FIXME',
       :description => '{{cookiecutter.project_name}} FIXME Service'
     ) }
 
