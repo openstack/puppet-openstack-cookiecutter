@@ -60,7 +60,7 @@ describe '{{cookiecutter.project_name}}::db' do
         :osfamily => 'Debian',
         :operatingsystem => 'Debian',
         :operatingsystemrelease => 'jessie',
-      }
+      })
     end
 
     it_configures '{{cookiecutter.project_name}}::db'
