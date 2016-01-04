@@ -120,13 +120,13 @@ class {{cookiecutter.project_name}}::logging(
   }
 
   {{cookiecutter.project_name}}_config {
-    'DEFAULT/use_syslog' :                    value => $use_syslog_real;
-    'DEFAULT/use_stderr' :                    value => $use_stderr_real;
-    'DEFAULT/syslog_log_facility' :           value => $log_facility_real;
-    'DEFAULT/log_dir' :                       value => $log_dir_real;
-    'DEFAULT/log_file':                       value => $log_file_real;
-    'DEFAULT/verbose' :                       value => $verbose_real;
-    'DEFAULT/debug' :                         value => $debug_real;
+    'DEFAULT/use_syslog' :                    value => $use_syslog;
+    'DEFAULT/use_stderr' :                    value => $use_stderr;
+    'DEFAULT/syslog_log_facility' :           value => $log_facility;
+    'DEFAULT/log_dir' :                       value => $log_dir;
+    'DEFAULT/log_file':                       value => $log_file;
+    'DEFAULT/verbose' :                       value => $verbose;
+    'DEFAULT/debug' :                         value => $debug;
     'DEFAULT/default_log_levels' :            value => $default_log_levels_real;
     'DEFAULT/logging_context_format_string' : value => $logging_context_format_string;
     'DEFAULT/logging_default_format_string' : value => $logging_default_format_string;
