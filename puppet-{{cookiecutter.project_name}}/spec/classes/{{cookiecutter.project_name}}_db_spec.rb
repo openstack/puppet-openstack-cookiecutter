@@ -15,7 +15,7 @@ describe '{{cookiecutter.project_name}}::db' do
 
     context 'with specific parameters' do
       let :params do
-        { :database_connection     => 'mysql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}',
+        { :database_connection     => 'mysql+pymysql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}',
           :database_idle_timeout   => '3601',
           :database_min_pool_size  => '2',
           :database_max_retries    => '11',
@@ -25,7 +25,7 @@ describe '{{cookiecutter.project_name}}::db' do
         }
       end
 
-      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/connection').with_value('mysql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}') }
+      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/connection').with_value('mysql+pymysql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}') }
       it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/idle_timeout').with_value('3601') }
       it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/min_pool_size').with_value('2') }
       it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/max_retries').with_value('11') }
@@ -45,6 +45,14 @@ describe '{{cookiecutter.project_name}}::db' do
 
     end
 
+    context 'with MySQL-python library as backend package' do
+      let :params do
+        { :database_connection     => 'mysql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}', }
+      end
+
+      it { is_expected.to contain_package('python-mysqldb').with(:ensure => 'present') }
+    end
+
     context 'with incorrect database_connection string' do
       let :params do
         { :database_connection     => 'foodb://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}', }
@@ -52,6 +60,15 @@ describe '{{cookiecutter.project_name}}::db' do
 
       it_raises 'a Puppet::Error', /validate_re/
     end
+
+    context 'with incorrect pymysql database_connection string' do
+      let :params do
+        { :database_connection     => 'foo+pymysql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}', }
+      end
+
+      it_raises 'a Puppet::Error', /validate_re/
+    end
+
   end
 
   context 'on Debian platforms' do
@@ -64,6 +81,20 @@ describe '{{cookiecutter.project_name}}::db' do
     end
 
     it_configures '{{cookiecutter.project_name}}::db'
+
+    context 'using pymysql driver' do
+      let :params do
+        { :database_connection     => 'mysql+pymysql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}', }
+      end
+
+      it 'install the proper backend package' do
+        is_expected.to contain_package('{{cookiecutter.project_name}}-backend-package').with(
+          :ensure => 'present',
+          :name   => 'python-pymysql',
+          :tag    => 'openstack'
+        )
+      end
+    end
   end
 
   context 'on Redhat platforms' do
@@ -75,6 +106,15 @@ describe '{{cookiecutter.project_name}}::db' do
     end
 
     it_configures '{{cookiecutter.project_name}}::db'
+
+    context 'using pymysql driver' do
+      let :params do
+        { :database_connection     => 'mysql+pymysql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}', }
+      end
+
+      it 'install the proper backend package' do
+        is_expected.not_to contain_package('{{cookiecutter.project_name}}-backend-package')
+      end
   end
 
 end
