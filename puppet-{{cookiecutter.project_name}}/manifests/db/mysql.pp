@@ -1,7 +1,7 @@
 # The {{cookiecutter.project_name}}::db::mysql class implements mysql backend for {{cookiecutter.project_name}}
 #
 # This class can be used to create tables, users and grant
-# privelege for a mysql {{cookiecutter.project_name}} database.
+# privilege for a mysql {{cookiecutter.project_name}} database.
 #
 # == parameters
 #
