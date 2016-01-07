@@ -100,7 +100,7 @@ It has been automatically generated using cookiecutter[1] and msync[2]
 echo "
 
 -----------------------------------------------------------------------------------------------------
-The new project has been succesfully set up.
+The new project has been successfully set up.
 
 To submit the initial review please go to ${tmp_var}/puppet-modulesync-configs/modules/puppet-${proj}
 and run git review.

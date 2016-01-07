@@ -39,7 +39,7 @@ describe '{{cookiecutter.project_name}}::keystone::auth' do
     ) }
   end
 
-  describe 'when overriding URL paramaters' do
+  describe 'when overriding URL parameters' do
     let :params do
       { :password     => '{{cookiecutter.project_name}}_password',
         :public_url   => 'https://10.10.10.10:80',
