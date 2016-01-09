@@ -14,7 +14,7 @@
 Overview
 --------
 
-The {{cookiecutter.project_name}} module is a part of [OpenStack](https://github.com/openstack), an effort by the Openstack infrastructure team to provide continuous integration testing and code review for Openstack and Openstack community projects not part of the core software.  The module its self is used to flexibly configure and manage the FIXME service for Openstack.
+The {{cookiecutter.project_name}} module is a part of [OpenStack](https://www.openstack.org), an effort by the OpenStack infrastructure team to provide continuous integration testing and code review for OpenStack and OpenStack community projects not part of the core software.  The module its self is used to flexibly configure and manage the FIXME service for OpenStack.
 
 Module Description
 ------------------
@@ -26,7 +26,7 @@ Setup
 
 **What the {{cookiecutter.project_name}} module affects**
 
-* [{{cookiecutter.project_name|capitalize}}](https://wiki.openstack.org/wiki/{{cookiecutter.project_name|capitalize}}), the FIXME service for Openstack.
+* [{{cookiecutter.project_name|capitalize}}](https://wiki.openstack.org/wiki/{{cookiecutter.project_name|capitalize}}), the FIXME service for OpenStack.
 
 ### Installing {{cookiecutter.project_name}}
 
@@ -35,7 +35,7 @@ Setup
 
 ### Beginning with {{cookiecutter.project_name}}
 
-To utilize the {{cookiecutter.project_name}} module's functionality you will need to declare multiple resources.  The following is a modified excerpt from the [openstack module](https://github.com/stackfoge/puppet-openstack).  This is not an exhaustive list of all the components needed, we recommend you consult and understand the [openstack module](https://github.com/stackforge/puppet-openstack) and the [core openstack](http://docs.openstack.org) documentation.
+To utilize the {{cookiecutter.project_name}} module's functionality you will need to declare multiple resources.
 
 Implementation
 --------------
