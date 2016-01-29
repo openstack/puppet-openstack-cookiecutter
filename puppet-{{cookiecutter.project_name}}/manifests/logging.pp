@@ -29,6 +29,10 @@
 #    If set to boolean false, it will not log to any directory.
 #    Defaults to '/var/log/{{cookiecutter.project_name}}'.
 #
+#  [*log_file*]
+#    (optional) File where logs should be stored.
+#    Defaults to '/var/log/{{cookiecutter.project_name}}/{{cookiecutter.project_name}}.log'
+#
 #  [*logging_context_format_string*]
 #    (optional) Format string to use for log messages with context.
 #    Defaults to $::os_service_default
@@ -98,6 +102,7 @@ class {{cookiecutter.project_name}}::logging(
   $use_stderr                    = $::os_service_default,
   $log_facility                  = $::os_service_default,
   $log_dir                       = '/var/log/{{cookiecutter.project_name}}',
+  $log_file                      = '/var/log/{{cookiecutter.project_name}}/{{cookiecutter.project_name}}.log',
   $verbose                       = $::os_service_default,
   $debug                         = $::os_service_default,
   $logging_context_format_string = $::os_service_default,
