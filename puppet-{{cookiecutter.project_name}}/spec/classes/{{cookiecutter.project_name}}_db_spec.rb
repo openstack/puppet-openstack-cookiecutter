@@ -115,6 +115,7 @@ describe '{{cookiecutter.project_name}}::db' do
       it 'install the proper backend package' do
         is_expected.not_to contain_package('{{cookiecutter.project_name}}-backend-package')
       end
+    end
   end
 
 end

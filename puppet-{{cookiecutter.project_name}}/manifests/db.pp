@@ -43,6 +43,8 @@ class {{cookiecutter.project_name}}::db (
   $database_max_overflow   = $::os_service_default,
 ) {
 
+  include ::{{cookiecutter.project_name}}::params
+
   $database_connection_real = pick($::{{cookiecutter.project_name}}::database_connection, $database_connection)
   $database_idle_timeout_real = pick($::{{cookiecutter.project_name}}::database_idle_timeout, $database_idle_timeout)
   $database_min_pool_size_real = pick($::{{cookiecutter.project_name}}::database_min_pool_size, $database_min_pool_size)
@@ -52,7 +54,7 @@ class {{cookiecutter.project_name}}::db (
   $database_max_overflow_real = pick($::{{cookiecutter.project_name}}::database_max_overflow, $database_max_overflow)
 
   validate_re($database_connection_real,
-    '(sqlite|mysql(\+pymysql)?|postgresql):\/\/(\S+:\S+@\S+\/\S+)?')
+     '^(sqlite|mysql(\+pymysql)?|postgresql):\/\/(\S+:\S+@\S+\/\S+)?')
 
   case $database_connection_real {
     /^mysql(\+pymysql)?:\/\//: {
