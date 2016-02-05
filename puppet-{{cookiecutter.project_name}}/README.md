@@ -63,7 +63,7 @@ bundle exec rake acceptance
 
 For more information on writing and running beaker-rspec tests visit the documentation:
 
-* https://github.com/puppetlabs/beaker/wiki/How-to-Write-a-Beaker-Test-for-a-Module
+* https://github.com/puppetlabs/beaker-rspec/blob/master/README.md
 
 Development
 -----------
