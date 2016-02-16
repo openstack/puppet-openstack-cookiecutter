@@ -27,32 +27,71 @@
 #   * cookiecutter (package or pip)
 #   * modulesync (gem)
 #   * digest (gem)
+#   * virtualenv (package or pip when running test)
+set -e
 
 proj=$1
 user=$2
+testing=${OS_NEW_MODULE_TEST:+yes}
+cookiecutter_url=https://git.openstack.org/openstack/puppet-openstack-cookiecutter
 
 if [ -z "$proj" ] || [ -z "$user" ] ; then
     echo "usage: $0 project-name gerrit-user-id"
     exit 1
 fi
 
-tmp_var="/tmp/puppet-${proj}"
-rm -rf $tmp_var
-mkdir -p $tmp_var/{cookiecutter,openstack}
-pushd $tmp_var
+if [ -z "${testing}" ]; then
+    tmp_var="/tmp/puppet-${proj}"
+else
+    tmp_var="${PWD}/puppet-${proj}"
+    cookiecutter_conf="${PWD}/default-config.yaml"
+    virtualenv virtenv
+    . virtenv/bin/activate
+    # https://github.com/audreyr/cookiecutter/pull/621
+    if ! grep -q poyo virtenv/lib/python2.7/site-packages/cookiecutter-*.egg-info/requires.txt; then
+        # Requires gcc
+        if [ -z "$(which gcc 2>/dev/null)" ]; then
+            echo "GCC is required to install cookiecutter."
+            exit 1
+        fi
+        pip install ruamel.yaml
+    fi
+    pip install cookiecutter
+    cat > "${cookiecutter_conf}" <<EOF
+---
+default_context:
+  project_name: $proj
+  version: 0.0.1
+  year: 2016
+EOF
+fi
+
+rm -rf "${tmp_var}"
+mkdir -p "${tmp_var}"/{cookiecutter,openstack}
+pushd "${tmp_var}"
 
 # Step 1: Generate the skeleton of the module
 #
 pushd cookiecutter
-cookiecutter https://github.com/openstack/puppet-openstack-cookiecutter
+if [ -z "${testing}" ]; then
+    cookiecutter "${cookiecutter_url}"
+else
+    cookiecutter --no-input --config-file="${cookiecutter_conf}" "${cookiecutter_url}"
+fi
 popd
 
 # Step 2: Retrieve the git repository of the project
 #
-pushd openstack
-git clone https://review.openstack.org/openstack/puppet-$proj
-mv puppet-$proj/.git ../cookiecutter/puppet-$proj/
-popd
+if [ -z "${testing}" ]; then
+    pushd openstack
+    git clone https://review.openstack.org/openstack/puppet-$proj
+    mv puppet-$proj/.git ../cookiecutter/puppet-$proj/
+    popd
+else
+    pushd cookiecutter/puppet-$proj
+    git init
+    popd
+fi
 
 # Step 3: Add the cookiecutter file and make an initial commit
 #
@@ -86,7 +125,7 @@ EOF
 msync update --noop
 pushd modules/puppet-$proj
 md5password=`ruby -e "require 'digest/md5'; puts 'md5' + Digest::MD5.hexdigest('pw${proj}')"`
-sed -i "s|md5c530c33636c58ae83ca933f39319273e|${md5password}|g" spec/classes/${proj}_db_postgresql_spec.rb
+sed -i "s/md5c530c33636c58ae83ca933f39319273e/${md5password}/g" spec/classes/${proj}_db_postgresql_spec.rb
 git remote add gerrit ssh://$user@review.openstack.org:29418/openstack/puppet-$proj.git
 git add --all && git commit --amend -am "puppet-${proj}: Initial commit
 
@@ -107,4 +146,3 @@ and run git review.
 
 Happy Hacking !
 "
-
