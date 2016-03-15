@@ -109,6 +109,7 @@ popd
 #
 git clone https://review.openstack.org/openstack/puppet-modulesync-configs
 pushd puppet-modulesync-configs/
+[ -z "${testing}" ] || ${GEM_HOME}/bin/bundle install
 cat > managed_modules.yml <<EOF
 ---
   - puppet-$proj
@@ -122,7 +123,11 @@ EOF
 
 # Step 5: Run msync and amend the initial commit
 #
-msync update --noop
+if [ -z "${testing}" ]; then
+    msync update --noop
+else
+    ${GEM_HOME}/bin/bundle exec msync update --noop
+fi
 pushd modules/puppet-$proj
 md5password=`ruby -e "require 'digest/md5'; puts 'md5' + Digest::MD5.hexdigest('pw${proj}')"`
 sed -i "s/md5c530c33636c58ae83ca933f39319273e/${md5password}/g" spec/classes/${proj}_db_postgresql_spec.rb
