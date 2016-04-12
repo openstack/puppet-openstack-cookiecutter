@@ -43,8 +43,6 @@ class {{cookiecutter.project_name}}::db (
   $database_max_overflow   = $::os_service_default,
 ) {
 
-  include ::{{cookiecutter.project_name}}::params
-
   $database_connection_real = pick($::{{cookiecutter.project_name}}::database_connection, $database_connection)
   $database_idle_timeout_real = pick($::{{cookiecutter.project_name}}::database_idle_timeout, $database_idle_timeout)
   $database_min_pool_size_real = pick($::{{cookiecutter.project_name}}::database_min_pool_size, $database_min_pool_size)
@@ -56,44 +54,13 @@ class {{cookiecutter.project_name}}::db (
   validate_re($database_connection_real,
     '^(sqlite|mysql(\+pymysql)?|postgresql):\/\/(\S+:\S+@\S+\/\S+)?')
 
-  case $database_connection_real {
-    /^mysql(\+pymysql)?:\/\//: {
-      require 'mysql::bindings'
-      require 'mysql::bindings::python'
-      if $database_connection_real =~ /^mysql\+pymysql/ {
-        $backend_package = $::{{cookiecutter.project_name}}::params::pymysql_package_name
-      } else {
-        $backend_package = false
-      }
-    }
-    /^postgresql:\/\//: {
-      $backend_package = false
-      require 'postgresql::lib::python'
-    }
-    /^sqlite:\/\//: {
-      $backend_package = $::{{cookiecutter.project_name}}::params::sqlite_package_name
-    }
-    default: {
-      fail('Unsupported backend configured')
-    }
+  oslo::db { '{{cookiecutter.project_name}}_config':
+    connection     => $database_connection_real,
+    idle_timeout   => $database_idle_timeout_real,
+    min_pool_size  => $database_min_pool_size_real,
+    max_retries    => $database_max_retries_real,
+    retry_interval => $database_retry_interval_real,
+    max_pool_size  => $database_max_pool_size_real,
+    max_overflow   => $database_max_overflow_real,
   }
-
-  if $backend_package and !defined(Package[$backend_package]) {
-    package {'{{cookiecutter.project_name}}-backend-package':
-      ensure => present,
-      name   => $backend_package,
-      tag    => 'openstack',
-    }
-  }
-
-  {{cookiecutter.project_name}}_config {
-    'database/connection':     value => $database_connection_real, secret => true;
-    'database/idle_timeout':   value => $database_idle_timeout_real;
-    'database/min_pool_size':  value => $database_min_pool_size_real;
-    'database/max_retries':    value => $database_max_retries_real;
-    'database/retry_interval': value => $database_retry_interval_real;
-    'database/max_pool_size':  value => $database_max_pool_size_real;
-    'database/max_overflow':   value => $database_max_overflow_real;
-  }
-
 }

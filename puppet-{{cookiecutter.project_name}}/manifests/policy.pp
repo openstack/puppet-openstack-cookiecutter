@@ -36,4 +36,6 @@ class {{cookiecutter.project_name}}::policy (
 
   create_resources('openstacklib::policy::base', $policies)
 
+  oslo::policy { '{{cookiecutter.project_name}}_config': policy_file => $policy_path }
+
 }
