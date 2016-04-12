@@ -56,7 +56,7 @@ else
         fi
         pip install ruamel.yaml
     fi
-    pip install cookiecutter
+    pip install cookiecutter==1.3.0
     cat > "${cookiecutter_conf}" <<EOF
 ---
 default_context:
