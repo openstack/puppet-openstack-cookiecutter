@@ -1,8 +1,7 @@
 require 'spec_helper'
 
 describe '{{cookiecutter.project_name}}::policy' do
-
-  shared_examples_for '{{cookiecutter.project_name}} policies' do
+  shared_examples_for '{{cookiecutter.project_name}}-policies' do
     let :params do
       {
         :policy_path => '/etc/{{cookiecutter.project_name}}/policy.json',
@@ -23,19 +22,15 @@ describe '{{cookiecutter.project_name}}::policy' do
     end
   end
 
-  context 'on Debian platforms' do
-    let :facts do
-      { :osfamily => 'Debian' }
+  on_supported_os({
+    :supported_os => OSDefaults.get_supported_os
+  }).each do |os,facts|
+    context "on #{os}" do
+      let (:facts) do
+        facts.merge!(OSDefaults.get_facts())
+      end
+
+      it_behaves_like '{{cookiecutter.project_name}}-policies'
     end
-
-    it_configures '{{cookiecutter.project_name}} policies'
-  end
-
-  context 'on RedHat platforms' do
-    let :facts do
-      { :osfamily => 'RedHat' }
-    end
-
-    it_configures '{{cookiecutter.project_name}} policies'
   end
 end

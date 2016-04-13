@@ -71,17 +71,7 @@ describe '{{cookiecutter.project_name}}::db' do
 
   end
 
-  context 'on Debian platforms' do
-    let :facts do
-      @default_facts.merge({
-        :osfamily => 'Debian',
-        :operatingsystem => 'Debian',
-        :operatingsystemrelease => 'jessie',
-      })
-    end
-
-    it_configures '{{cookiecutter.project_name}}::db'
-
+  shared_examples_for '{{cookiecutter.project_name}}::db on Debian' do
     context 'using pymysql driver' do
       let :params do
         { :database_connection     => 'mysql+pymysql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}', }
@@ -97,16 +87,7 @@ describe '{{cookiecutter.project_name}}::db' do
     end
   end
 
-  context 'on Redhat platforms' do
-    let :facts do
-      @default_facts.merge({
-        :osfamily => 'RedHat',
-        :operatingsystemrelease => '7.1',
-      })
-    end
-
-    it_configures '{{cookiecutter.project_name}}::db'
-
+  shared_examples_for '{{cookiecutter.project_name}}::db on RedHat' do
     context 'using pymysql driver' do
       let :params do
         { :database_connection     => 'mysql+pymysql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}', }
@@ -118,4 +99,16 @@ describe '{{cookiecutter.project_name}}::db' do
     end
   end
 
+  on_supported_os({
+    :supported_os   => OSDefaults.get_supported_os
+  }).each do |os,facts|
+    context "on #{os}" do
+      let (:facts) do
+        facts.merge!(OSDefaults.get_facts())
+      end
+
+      it_configures '{{cookiecutter.project_name}}::db'
+      it_configures "{{cookiecutter.project_name}}::db on #{facts[:osfamily]}"
+    end
+  end
 end
