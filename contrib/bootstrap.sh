@@ -76,7 +76,8 @@ pushd cookiecutter
 if [ -z "${testing}" ]; then
     cookiecutter "${cookiecutter_url}"
 else
-    cookiecutter --no-input --config-file="${cookiecutter_conf}" "${cookiecutter_url}"
+    # use current repo for CI, because we want to test current patch
+    cookiecutter --no-input --config-file="${cookiecutter_conf}" "../.."
 fi
 popd
 

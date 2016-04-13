@@ -136,5 +136,6 @@ class {{cookiecutter.project_name}}::logging(
     instance_format               => $instance_format,
     instance_uuid_format          => $instance_uuid_format,
     log_date_format               => $log_date_format,
+    syslog_log_facility           => $log_facility,
   }
 }

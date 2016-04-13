@@ -138,7 +138,7 @@ describe '{{cookiecutter.project_name}}::logging' do
 
   context 'on RedHat platforms' do
     let :facts do
-      @default_facts.merge({ :osfamily => 'RedHait' })
+      @default_facts.merge({ :osfamily => 'RedHat' })
     end
 
     it_configures '{{cookiecutter.project_name}}-logging'
