@@ -37,6 +37,10 @@
 #   (optional) Name of the service.
 #   Defaults to the value of auth_name.
 #
+# [*service_description*]
+#   (optional) Description of the service.
+#   Default to '{{cookiecutter.project_name}} FIXME Service'
+#
 # [*public_url*]
 #   (optional) The endpoint's public url. (Defaults to 'http://127.0.0.1:FIXME')
 #   This url should *not* contain any trailing '/'.
@@ -57,6 +61,7 @@ class {{cookiecutter.project_name}}::keystone::auth (
   $configure_user      = true,
   $configure_user_role = true,
   $service_name        = undef,
+  $service_description = '{{cookiecutter.project_name}} FIXME Service',
   $service_type        = 'FIXME',
   $region              = 'RegionOne',
   $public_url          = 'http://127.0.0.1:FIXME',
@@ -64,7 +69,7 @@ class {{cookiecutter.project_name}}::keystone::auth (
   $internal_url        = 'http://127.0.0.1:FIXME',
 ) {
 
-  $real_service_name    = pick($service_name, $auth_name)
+  $real_service_name = pick($service_name, $auth_name)
 
   if $configure_user_role {
     Keystone_user_role["${auth_name}@${tenant}"] ~> Service <| name == '{{cookiecutter.project_name}}-server' |>
@@ -77,7 +82,7 @@ class {{cookiecutter.project_name}}::keystone::auth (
     configure_endpoint  => $configure_endpoint,
     service_name        => $real_service_name,
     service_type        => $service_type,
-    service_description => '{{cookiecutter.project_name}} FIXME Service',
+    service_description => $service_description,
     region              => $region,
     auth_name           => $auth_name,
     password            => $password,
