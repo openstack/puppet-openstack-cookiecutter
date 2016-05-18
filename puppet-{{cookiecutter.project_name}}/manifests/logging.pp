@@ -4,10 +4,6 @@
 #
 # == parameters
 #
-#  [*verbose*]
-#    (Optional) Should the daemons log verbose messages
-#    Defaults to $::os_service_default
-#
 #  [*debug*]
 #    (Optional) Should the daemons log debug messages
 #    Defaults to $::os_service_default
@@ -103,7 +99,6 @@ class {{cookiecutter.project_name}}::logging(
   $log_facility                  = $::os_service_default,
   $log_dir                       = '/var/log/{{cookiecutter.project_name}}',
   $log_file                      = '/var/log/{{cookiecutter.project_name}}/{{cookiecutter.project_name}}.log',
-  $verbose                       = $::os_service_default,
   $debug                         = $::os_service_default,
   $logging_context_format_string = $::os_service_default,
   $logging_default_format_string = $::os_service_default,
@@ -124,7 +119,6 @@ class {{cookiecutter.project_name}}::logging(
     log_dir                       => $log_dir,
     log_file                      => $log_file,
     debug                         => $debug,
-    verbose                       => $verbose,
     logging_context_format_string => $logging_context_format_string,
     logging_default_format_string => $logging_default_format_string,
     logging_debug_format_suffix   => $logging_debug_format_suffix,

@@ -29,7 +29,6 @@ describe '{{cookiecutter.project_name}}::logging' do
      :log_facility => 'LOG_FOO',
      :log_dir => '/var/log',
      :log_file => '/var/log/{{cookiecutter.project_name}}.log',
-     :verbose => true,
      :debug => true,
     }
   end
@@ -63,7 +62,6 @@ describe '{{cookiecutter.project_name}}::logging' do
       is_expected.to contain_{{cookiecutter.project_name}}_config('DEFAULT/syslog_log_facility').with(:value => '<SERVICE DEFAULT>')
       is_expected.to contain_{{cookiecutter.project_name}}_config('DEFAULT/log_dir').with(:value => '/var/log/{{cookiecutter.project_name}}')
       is_expected.to contain_{{cookiecutter.project_name}}_config('DEFAULT/log_file').with(:value => '/var/log/{{cookiecutter.project_name}}/{{cookiecutter.project_name}}.log')
-      is_expected.to contain_{{cookiecutter.project_name}}_config('DEFAULT/verbose').with(:value => '<SERVICE DEFAULT>')
       is_expected.to contain_{{cookiecutter.project_name}}_config('DEFAULT/debug').with(:value => '<SERVICE DEFAULT>')
     end
   end
@@ -75,7 +73,6 @@ describe '{{cookiecutter.project_name}}::logging' do
       is_expected.to contain_{{cookiecutter.project_name}}_config('DEFAULT/syslog_log_facility').with(:value => 'LOG_FOO')
       is_expected.to contain_{{cookiecutter.project_name}}_config('DEFAULT/log_dir').with(:value => '/var/log')
       is_expected.to contain_{{cookiecutter.project_name}}_config('DEFAULT/log_file').with(:value => '/var/log/{{cookiecutter.project_name}}.log')
-      is_expected.to contain_{{cookiecutter.project_name}}_config('DEFAULT/verbose').with(:value => 'true')
       is_expected.to contain_{{cookiecutter.project_name}}_config('DEFAULT/debug').with(:value => 'true')
     end
   end
