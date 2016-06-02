@@ -16,7 +16,7 @@
 #    (optional) Use stderr for logging
 #    Defaults to $::os_service_default
 #
-#  [*log_facility*]
+#  [*syslog_log_facility*]
 #    (Optional) Syslog facility to receive log lines.
 #    Defaults to $::os_service_default
 #
@@ -52,7 +52,7 @@
 #    Example: '%(asctime)s.%(msecs)03d %(process)d TRACE %(name)s %(instance)s'
 #
 #  [*log_config_append*]
-#    The name of an additional logging configuration file.
+#    (optional) The name of an additional logging configuration file.
 #    Defaults to $::os_service_default
 #    See https://docs.python.org/2/howto/logging.html
 #
@@ -96,7 +96,7 @@
 class {{cookiecutter.project_name}}::logging(
   $use_syslog                    = $::os_service_default,
   $use_stderr                    = $::os_service_default,
-  $log_facility                  = $::os_service_default,
+  $syslog_log_facility           = $::os_service_default,
   $log_dir                       = '/var/log/{{cookiecutter.project_name}}',
   $log_file                      = '/var/log/{{cookiecutter.project_name}}/{{cookiecutter.project_name}}.log',
   $debug                         = $::os_service_default,
@@ -130,6 +130,6 @@ class {{cookiecutter.project_name}}::logging(
     instance_format               => $instance_format,
     instance_uuid_format          => $instance_uuid_format,
     log_date_format               => $log_date_format,
-    syslog_log_facility           => $log_facility,
+    syslog_log_facility           => $syslog_log_facility,
   }
 }

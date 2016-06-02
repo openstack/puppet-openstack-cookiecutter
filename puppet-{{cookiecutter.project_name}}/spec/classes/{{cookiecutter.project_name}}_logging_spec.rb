@@ -26,7 +26,7 @@ describe '{{cookiecutter.project_name}}::logging' do
      :log_date_format => '%Y-%m-%d %H:%M:%S',
      :use_syslog => true,
      :use_stderr => false,
-     :log_facility => 'LOG_FOO',
+     :syslog_log_facility => 'LOG_FOO',
      :log_dir => '/var/log',
      :log_file => '/var/log/{{cookiecutter.project_name}}.log',
      :debug => true,
