@@ -59,8 +59,8 @@ describe '{{cookiecutter.project_name}}::keystone::auth' do
 
       it { is_expected.to contain_keystone_user('{{cookiecutter.project_name}}y') }
       it { is_expected.to contain_keystone_user_role('{{cookiecutter.project_name}}y@services') }
-      it { is_expected.to contain_keystone_service('{{cookiecutter.project_name}}y::FIXME') }
-      it { is_expected.to contain_keystone_endpoint('RegionOne/{{cookiecutter.project_name}}y::FIXME') }
+      it { is_expected.to contain_keystone_service('{{cookiecutter.project_name}}::FIXME') }
+      it { is_expected.to contain_keystone_endpoint('RegionOne/{{cookiecutter.project_name}}::FIXME') }
     end
 
     context 'when overriding service name' do
