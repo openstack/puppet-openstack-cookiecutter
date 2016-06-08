@@ -1,5 +1,5 @@
 {
-  "name": "puppet-{{cookiecutter.project_name}}",
+  "name": "openstack-{{cookiecutter.project_name}}",
   "version": "{{cookiecutter.version}}",
   "author": "OpenStack Contributors",
   "summary": "Puppet module for OpenStack {{cookiecutter.project_name|capitalize}}",
