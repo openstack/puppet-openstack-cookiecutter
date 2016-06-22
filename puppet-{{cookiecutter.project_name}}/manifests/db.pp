@@ -6,7 +6,7 @@
 #
 # [*database_connection*]
 #   (Optional) Url used to connect to database.
-#   Defaults to "sqlite:////var/lib/{{cookiecutter.project_name}}/{{cookiecutter.project_name}}.sqlite".
+#   Defaults to 'sqlite:////var/lib/{{cookiecutter.project_name}}/{{cookiecutter.project_name}}.sqlite'.
 #
 # [*database_idle_timeout*]
 #   (Optional) Timeout when db connections should be reaped.
