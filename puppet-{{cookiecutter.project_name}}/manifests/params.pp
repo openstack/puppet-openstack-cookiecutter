@@ -1,6 +1,7 @@
 # Parameters for puppet-{{cookiecutter.project_name}}
 #
 class {{cookiecutter.project_name}}::params {
+  include ::openstacklib::defaults
 
   case $::osfamily {
     'RedHat': {
