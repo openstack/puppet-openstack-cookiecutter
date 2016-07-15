@@ -7,6 +7,9 @@
 # [*password*]
 #   (required) Password for {{cookiecutter.project_name}} user.
 #
+# [*ensure*]
+#   (optional) Ensure state of keystone service identity. Defaults to 'present'.
+#
 # [*auth_name*]
 #   Username for {{cookiecutter.project_name}} service. Defaults to '{{cookiecutter.project_name}}'.
 #
@@ -54,6 +57,7 @@
 #
 class {{cookiecutter.project_name}}::keystone::auth (
   $password,
+  $ensure              = 'present',
   $auth_name           = '{{cookiecutter.project_name}}',
   $email               = '{{cookiecutter.project_name}}@localhost',
   $tenant              = 'services',
@@ -75,6 +79,7 @@ class {{cookiecutter.project_name}}::keystone::auth (
   Keystone_endpoint["${region}/${service_name}::${service_type}"]  ~> Service <| name == '{{cookiecutter.project_name}}-server' |>
 
   keystone::resource::service_identity { '{{cookiecutter.project_name}}':
+    ensure              => $ensure,
     configure_user      => $configure_user,
     configure_user_role => $configure_user_role,
     configure_endpoint  => $configure_endpoint,

@@ -112,6 +112,19 @@ describe '{{cookiecutter.project_name}}::keystone::auth' do
       ) }
 
     end
+
+    context 'when using ensure absent' do
+
+      let :params do
+        {
+          :password => '{{cookiecutter.project_name}}_password',
+          :ensure   => 'absent'
+        }
+      end
+
+      it { is_expected.to contain_keystone__resource__service_identity('{{cookiecutter.project_name}}').with_ensure('absent') }
+
+    end
   end
 
   on_supported_os({
