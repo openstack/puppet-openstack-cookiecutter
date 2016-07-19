@@ -27,7 +27,6 @@
 #   * cookiecutter (package or pip)
 #   * modulesync (gem)
 #   * digest (gem)
-#   * virtualenv (package or pip when running test)
 set -e
 
 proj=$1
@@ -45,18 +44,16 @@ if [ -z "${testing}" ]; then
 else
     tmp_var="${PWD}/puppet-${proj}"
     cookiecutter_conf="${PWD}/default-config.yaml"
-    virtualenv virtenv
-    . virtenv/bin/activate
     # https://github.com/audreyr/cookiecutter/pull/621
-    if ! grep -q poyo virtenv/lib/python2.7/site-packages/cookiecutter-*.egg-info/requires.txt; then
+    if ! grep -q poyo /usr/lib/python2.7/site-packages/cookiecutter-*.egg-info/requires.txt; then
         # Requires gcc
         if [ -z "$(which gcc 2>/dev/null)" ]; then
             echo "GCC is required to install cookiecutter."
             exit 1
         fi
-        pip install ruamel.yaml
+        sudo pip install ruamel.yaml
     fi
-    pip install cookiecutter==1.3.0
+    sudo pip install cookiecutter==1.3.0
     cat > "${cookiecutter_conf}" <<EOF
 ---
 default_context:
