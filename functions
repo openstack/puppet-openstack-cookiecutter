@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+# functions - puppet-openstack_spec_helper specific functions
+#
+
+prepare_environment() {
+  mkdir .bundled_gems
+  export GEM_HOME=`pwd`/.bundled_gems
+  gem install bundler --no-rdoc --no-ri --verbose
+
+  # Build fake module
+  OS_NEW_MODULE_TEST=yes bash -x ./contrib/bootstrap.sh whazz dummy
+  cd puppet-whazz/openstack/puppet-modulesync-configs/modules/puppet-whazz
+
+  $GEM_HOME/bin/bundle install
+}

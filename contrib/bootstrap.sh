@@ -105,8 +105,13 @@ popd
 
 # Step 4: Retrieve the puppet-modulesync-configs directory and configure it for your need
 #
-git clone https://review.openstack.org/openstack/puppet-modulesync-configs
-pushd puppet-modulesync-configs/
+if [ -e /usr/zuul-env/bin/zuul-cloner ] ; then
+    /usr/zuul-env/bin/zuul-cloner --cache-dir /opt/git \
+        git://git.openstack.org openstack/puppet-modulesync-configs
+else
+    git clone git://git.openstack.org/openstack/puppet-modulesync-configs openstack/puppet-modulesync-configs
+fi
+pushd openstack/puppet-modulesync-configs/
 [ -z "${testing}" ] || ${GEM_HOME}/bin/bundle install
 cat > managed_modules.yml <<EOF
 ---
