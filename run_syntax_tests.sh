@@ -17,8 +17,9 @@ export SCRIPT_DIR=$(cd `dirname $0` && pwd -P)
 source $SCRIPT_DIR/functions
 
 export PUPPET_VERSION=${PUPPET_VERSION:-4}
-export PUPPET_GEM_VERSION="~> $PUPPET_VERSION"
-if [ "$PUPPET_VERSION" -lt "4" ]; then
+PUPPET_MAJOR_VERSION=`echo $PUPPET_VERSION | cut -c 1`
+export PUPPET_GEM_VERSION="~> $PUPPET_MAJOR_VERSION"
+if [ "$PUPPET_MAJOR_VERSION" -lt "4" ]; then
     export FUTURE_PARSER=${FUTURE_PARSER:-yes}
 else
     export FUTURE_PARSER=${FUTURE_PARSER:-no}
