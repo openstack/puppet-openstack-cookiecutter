@@ -13,9 +13,11 @@ class {{cookiecutter.project_name}}::db::sync(
 ) {
   exec { '{{cookiecutter.project_name}}-db-sync':
     command     => "{{cookiecutter.project_name}}-manage db_sync ${extra_params}",
-    path        => '/usr/bin',
+    path        => [ '/bin', '/usr/bin', ],
     user        => '{{cookiecutter.project_name}}',
     refreshonly => true,
+    try_sleep   => 5,
+    tries       => 10,
     subscribe   => [Package['{{cookiecutter.project_name}}'], {{cookiecutter.project_name|capitalize}}_config['database/connection']],
   }
 
