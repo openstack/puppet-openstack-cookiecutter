@@ -4,4 +4,8 @@ spec/fixtures/manifests/site.pp
 *.swp
 pkg
 vendor/
-openstack/
+/openstack/
+
+# Files created by releasenotes build
+releasenotes/build
+.tox
