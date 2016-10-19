@@ -1,3 +1,0 @@
----
-features:
-  - puppet-{{cookiecutter.project_name}} created.
