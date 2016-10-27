@@ -17,7 +17,7 @@ There are two ways to create the boilerplate for the puppet module.
 
 ### Remotely (ie. using a git repo)
 
-  1. Run `cookiecutter https://git.openstack.org/openstack-infra/puppet-openstack-cookiecutter.git`
+  1. Run `cookiecutter https://git.openstack.org/openstack/puppet-openstack-cookiecutter.git`
 
 ## What's next
 
