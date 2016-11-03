@@ -18,6 +18,7 @@ class {{cookiecutter.project_name}}::db::sync(
     refreshonly => true,
     try_sleep   => 5,
     tries       => 10,
+    logoutput   => on_failure,
     subscribe   => [Package['{{cookiecutter.project_name}}'], {{cookiecutter.project_name|capitalize}}_config['database/connection']],
   }
 
