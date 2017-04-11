@@ -4,14 +4,16 @@ describe '{{cookiecutter.project_name}}::db' do
 
   shared_examples '{{cookiecutter.project_name}}::db' do
     context 'with default parameters' do
-      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/connection').with_value('sqlite:////var/lib/{{cookiecutter.project_name}}/{{cookiecutter.project_name}}.sqlite') }
-      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/idle_timeout').with_value('<SERVICE DEFAULT>') }
-      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/min_pool_size').with_value('<SERVICE DEFAULT>') }
-      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/db_max_retries').with_value('<SERVICE DEFAULT>') }
-      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/max_retries').with_value('<SERVICE DEFAULT>') }
-      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/retry_interval').with_value('<SERVICE DEFAULT>') }
-      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/max_pool_size').with_value('<SERVICE DEFAULT>') }
-      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/max_overflow').with_value('<SERVICE DEFAULT>') }
+      it { is_expected.to contain_oslo__db('{{cookiecutter.project_name}}_config').with(
+        :connection     => 'sqlite:////var/lib/{{cookiecutter.project_name}}/{{cookiecutter.project_name}}.sqlite',
+        :idle_timeout   => '<SERVICE DEFAULT>',
+        :min_pool_size  => '<SERVICE DEFAULT>',
+        :db_max_retries => '<SERVICE DEFAULT>',
+        :max_pool_size  => '<SERVICE DEFAULT>',
+        :max_retries    => '<SERVICE DEFAULT>',
+        :retry_interval => '<SERVICE DEFAULT>',
+        :max_overflow   => '<SERVICE DEFAULT>',
+      )}
     end
 
     context 'with specific parameters' do
@@ -27,19 +29,21 @@ describe '{{cookiecutter.project_name}}::db' do
         }
       end
 
-      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/connection').with_value('mysql+pymysql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}') }
-      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/idle_timeout').with_value('3601') }
-      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/min_pool_size').with_value('2') }
-      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/db_max_retries').with_value('-1') }
-      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/max_retries').with_value('11') }
-      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/retry_interval').with_value('11') }
-      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/max_pool_size').with_value('11') }
-      it { is_expected.to contain_{{cookiecutter.project_name}}_config('database/max_overflow').with_value('21') }
+      it { is_expected.to contain_oslo__db('{{cookiecutter.project_name}}_config').with(
+        :connection     => 'mysql+pymysql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}',
+        :idle_timeout   => '3601',
+        :min_pool_size  => '2',
+        :db_max_retries => '-1',
+        :max_pool_size  => '11',
+        :max_retries    => '11',
+        :retry_interval => '11',
+        :max_overflow   => '21',
+      )}
     end
 
     context 'with postgresql backend' do
       let :params do
-        { :database_connection     => 'postgresql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}', }
+        { :database_connection => 'postgresql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}', }
       end
 
       it 'install the proper backend package' do
@@ -50,7 +54,7 @@ describe '{{cookiecutter.project_name}}::db' do
 
     context 'with MySQL-python library as backend package' do
       let :params do
-        { :database_connection     => 'mysql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}', }
+        { :database_connection => 'mysql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}', }
       end
 
       it { is_expected.to contain_package('python-mysqldb').with(:ensure => 'present') }
@@ -58,7 +62,7 @@ describe '{{cookiecutter.project_name}}::db' do
 
     context 'with incorrect database_connection string' do
       let :params do
-        { :database_connection     => 'foodb://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}', }
+        { :database_connection => 'foodb://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}', }
       end
 
       it_raises 'a Puppet::Error', /validate_re/
@@ -66,7 +70,7 @@ describe '{{cookiecutter.project_name}}::db' do
 
     context 'with incorrect pymysql database_connection string' do
       let :params do
-        { :database_connection     => 'foo+pymysql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}', }
+        { :database_connection => 'foo+pymysql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}', }
       end
 
       it_raises 'a Puppet::Error', /validate_re/
@@ -77,7 +81,7 @@ describe '{{cookiecutter.project_name}}::db' do
   shared_examples_for '{{cookiecutter.project_name}}::db on Debian' do
     context 'using pymysql driver' do
       let :params do
-        { :database_connection     => 'mysql+pymysql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}', }
+        { :database_connection => 'mysql+pymysql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}', }
       end
 
       it 'install the proper backend package' do
@@ -93,7 +97,7 @@ describe '{{cookiecutter.project_name}}::db' do
   shared_examples_for '{{cookiecutter.project_name}}::db on RedHat' do
     context 'using pymysql driver' do
       let :params do
-        { :database_connection     => 'mysql+pymysql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}', }
+        { :database_connection => 'mysql+pymysql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}', }
       end
 
       it 'install the proper backend package' do
@@ -103,7 +107,7 @@ describe '{{cookiecutter.project_name}}::db' do
   end
 
   on_supported_os({
-    :supported_os   => OSDefaults.get_supported_os
+    :supported_os => OSDefaults.get_supported_os
   }).each do |os,facts|
     context "on #{os}" do
       let (:facts) do
