@@ -112,6 +112,10 @@ else
     git clone git://git.openstack.org/openstack/puppet-modulesync-configs openstack/puppet-modulesync-configs
 fi
 pushd openstack/puppet-modulesync-configs/
+#TODO(aschultz): fixme after we unstick the gate
+# 0.8.x doesn't seem to work with out configs so we need to pin this but the
+# this script is unhappy.
+sed -i "s/'>=0.6.0'/['>=0.6.0','<0.8.0']/" Gemfile
 [ -z "${testing}" ] || ${GEM_HOME}/bin/bundle install
 cat > managed_modules.yml <<EOF
 ---
@@ -119,8 +123,8 @@ cat > managed_modules.yml <<EOF
 EOF
 cat > modulesync.yml <<EOF
 ---
-namespace:
-git_base: file://$tmp_var/cookiecutter/
+namespace: cookiecutter
+git_base: file://$tmp_var/
 branch: initial_commit
 EOF
 
