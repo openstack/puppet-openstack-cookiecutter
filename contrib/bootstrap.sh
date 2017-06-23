@@ -59,7 +59,7 @@ else
 default_context:
   project_name: $proj
   version: 0.0.1
-  year: 2016
+  year: 2017
 EOF
 fi
 
@@ -153,7 +153,7 @@ echo "
 -----------------------------------------------------------------------------------------------------
 The new project has been successfully set up.
 
-To submit the initial review please go to ${tmp_var}/puppet-modulesync-configs/modules/puppet-${proj}
+To submit the initial review please go to ${tmp_var}/openstack/puppet-modulesync-configs/modules/puppet-${proj}
 and run git review.
 
 Happy Hacking !
