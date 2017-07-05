@@ -28,6 +28,8 @@ class {{cookiecutter.project_name}}::policy (
   $policy_path = '/etc/{{cookiecutter.project_name}}/policy.json',
 ) {
 
+  include ::{{cookiecutter.project_name}}::deps
+
   validate_hash($policies)
 
   Openstacklib::Policy::Base {

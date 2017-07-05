@@ -113,6 +113,8 @@ class {{cookiecutter.project_name}}::logging(
   $log_date_format               = $::os_service_default,
 ) {
 
+  include ::{{cookiecutter.project_name}}::deps
+
   oslo::log { '{{cookiecutter.project_name}}_config':
     use_stderr                    => $use_stderr,
     use_syslog                    => $use_syslog,

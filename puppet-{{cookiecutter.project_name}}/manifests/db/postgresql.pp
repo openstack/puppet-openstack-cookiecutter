@@ -40,6 +40,8 @@ class {{cookiecutter.project_name}}::db::postgresql(
   $privileges = 'ALL',
 ) {
 
+  include ::{{cookiecutter.project_name}}::deps
+
   Class['{{cookiecutter.project_name}}::db::postgresql'] -> Service<| title == '{{cookiecutter.project_name}}' |>
 
   ::openstacklib::db::postgresql { '{{cookiecutter.project_name}}':

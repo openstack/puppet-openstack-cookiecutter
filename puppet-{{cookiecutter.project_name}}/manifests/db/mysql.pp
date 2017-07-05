@@ -53,6 +53,8 @@ class {{cookiecutter.project_name}}::db::mysql(
   $allowed_hosts = undef
 ) {
 
+  include ::{{cookiecutter.project_name}}::deps
+
   validate_string($password)
 
   ::openstacklib::db::mysql { '{{cookiecutter.project_name}}':

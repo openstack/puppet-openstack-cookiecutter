@@ -11,6 +11,9 @@
 class {{cookiecutter.project_name}}::db::sync(
   $extra_params  = undef,
 ) {
+
+  include ::{{cookiecutter.project_name}}::deps
+
   exec { '{{cookiecutter.project_name}}-db-sync':
     command     => "{{cookiecutter.project_name}}-manage db_sync ${extra_params}",
     path        => [ '/bin', '/usr/bin', ],
@@ -19,8 +22,11 @@ class {{cookiecutter.project_name}}::db::sync(
     try_sleep   => 5,
     tries       => 10,
     logoutput   => on_failure,
-    subscribe   => [Package['{{cookiecutter.project_name}}'], {{cookiecutter.project_name|capitalize}}_config['database/connection']],
+    subscribe   => [
+      Anchor['{{cookiecutter.project_name}}::install::end'],
+      Anchor['{{cookiecutter.project_name}}::config::end'],
+      Anchor['{{cookiecutter.project_name}}::dbsync::begin']
+    ],
+    notify      => Anchor['{{cookiecutter.project_name}}::dbsync::end'],
   }
-
-  Exec['{{cookiecutter.project_name}}-manage db_sync'] ~> Service<| title == '{{cookiecutter.project_name}}' |>
 }

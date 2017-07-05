@@ -222,6 +222,8 @@ class {{cookiecutter.project_name}}::keystone::authtoken(
   $token_cache_time               = $::os_service_default,
 ) {
 
+  include ::{{cookiecutter.project_name}}::deps
+
   keystone::resource::authtoken { '{{cookiecutter.project_name}}_config':
     username                       => $username,
     password                       => $password,
