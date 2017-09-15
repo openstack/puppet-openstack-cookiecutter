@@ -171,13 +171,6 @@
 #   (Optional) The region in which the identity server can be found.
 #   Defaults to $::os_service_default.
 #
-# [*revocation_cache_time*]
-#   (Optional) Determines the frequency at which the list of revoked tokens is
-#   retrieved from the Identity service (in seconds). A high number of
-#   revocation events combined with a low cache duration may significantly
-#   reduce performance. Only valid for PKI tokens. Integer value
-#   Defaults to $::os_service_default.
-#
 # [*token_cache_time*]
 #   (Optional) In order to prevent excessive effort spent validating tokens,
 #   the middleware caches previously-seen tokens for a configurable duration
@@ -218,7 +211,6 @@ class {{cookiecutter.project_name}}::keystone::authtoken(
   $memcached_servers              = $::os_service_default,
   $manage_memcache_package        = false,
   $region_name                    = $::os_service_default,
-  $revocation_cache_time          = $::os_service_default,
   $token_cache_time               = $::os_service_default,
 ) {
 
@@ -258,7 +250,6 @@ class {{cookiecutter.project_name}}::keystone::authtoken(
     memcached_servers              => $memcached_servers,
     manage_memcache_package        => $manage_memcache_package,
     region_name                    => $region_name,
-    revocation_cache_time          => $revocation_cache_time,
     token_cache_time               => $token_cache_time,
   }
 }
