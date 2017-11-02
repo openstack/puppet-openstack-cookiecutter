@@ -39,6 +39,36 @@ if [ -z "$proj" ] || [ -z "$user" ] ; then
     exit 1
 fi
 
+check_gerrit_user() {
+  if [[ -z $(git config --global user.name) ]]; then
+    echo "WARNING: Git commiter name is not set, setting it locally..."
+    git config --local user.name "Puppet OpenStack Cookiecutter"
+  fi
+
+  if [[ -z $(git config --global user.email) ]]; then
+    echo "WARNING: Git commiter email is not set, setting it locally..."
+    git config --local user.email "puppet-openstack-cookiecutter@example.com"
+  fi
+}
+
+cleanup_gerrit_user() {
+  if [[ -n $(git config --local user.name) || -n $(git config --local user.email) ]]; then
+    echo "
+WARNING: We configured a temporary user/email for the initial commit.
+You will need to reset this information prior to running git review. Please
+configure your name and email in the git config and update the previous
+commit with your author information.
+
+git config --global user.name "Your Name"
+git config --global user.email "your@email"
+cd `pwd`
+git commit --amend --author='Your Name <your@email>'"
+
+    git config --local --unset user.name
+    git config --local --unset user.email
+  fi
+}
+
 if [ -z "${testing}" ]; then
     tmp_var="/tmp/puppet-${proj}"
 else
@@ -94,6 +124,8 @@ fi
 # Step 3: Add the cookiecutter file and make an initial commit
 #
 pushd cookiecutter/puppet-$proj
+
+check_gerrit_user
 git add --all && git commit -am "puppet-${proj}: Initial Commit
 
 This is the initial commit for puppet-${proj}.
@@ -101,6 +133,7 @@ It has been automatically generated using cookiecutter[1] and msync[2]
 [1] https://github.com/openstack/puppet-openstack-cookiecutter
 [2] https://github.com/openstack/puppet-modulesync-configs
 "
+cleanup_gerrit_user
 popd
 
 # Step 4: Retrieve the puppet-modulesync-configs directory and configure it for your need
@@ -136,6 +169,9 @@ else
     ${GEM_HOME}/bin/bundle exec msync update --noop
 fi
 pushd modules/puppet-$proj
+
+check_gerrit_user
+
 md5password=`ruby -e "require 'digest/md5'; puts 'md5' + Digest::MD5.hexdigest('pw${proj}')"`
 sed -i "s/md5c530c33636c58ae83ca933f39319273e/${md5password}/g" spec/classes/${proj}_db_postgresql_spec.rb
 git remote add gerrit ssh://$user@review.openstack.org:29418/openstack/puppet-$proj.git
@@ -147,6 +183,8 @@ It has been automatically generated using cookiecutter[1] and msync[2]
 [1] https://github.com/openstack/puppet-openstack-cookiecutter
 [2] https://github.com/openstack/puppet-modulesync-configs
 "
+
+cleanup_gerrit_user
 
 echo "
 
