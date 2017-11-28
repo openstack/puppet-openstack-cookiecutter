@@ -24,6 +24,7 @@ describe '{{cookiecutter.project_name}}::logging' do
      :instance_uuid_format => '[instance: %(uuid)s] ',
      :log_date_format => '%Y-%m-%d %H:%M:%S',
      :use_syslog => true,
+     :use_json => true,
      :use_stderr => false,
      :syslog_log_facility => 'LOG_FOO',
      :log_dir => '/var/log',
@@ -58,6 +59,7 @@ describe '{{cookiecutter.project_name}}::logging' do
     it 'configures {{cookiecutter.project_name}} logging settings with default values' do
       is_expected.to contain_oslo__log('{{cookiecutter.project_name}}_config').with(
         :use_syslog          => '<SERVICE DEFAULT>',
+        :use_json            => '<SERVICE DEFAULT>',
         :use_stderr          => '<SERVICE DEFAULT>',
         :syslog_log_facility => '<SERVICE DEFAULT>',
         :log_dir             => '/var/log/{{cookiecutter.project_name}}',
@@ -71,6 +73,7 @@ describe '{{cookiecutter.project_name}}::logging' do
     it 'configures {{cookiecutter.project_name}} logging settings with non-default values' do
       is_expected.to contain_oslo__log('{{cookiecutter.project_name}}_config').with(
         :use_syslog          => true,
+        :use_json            => true,
         :use_stderr          => false,
         :syslog_log_facility => 'LOG_FOO',
         :log_dir             => '/var/log',
