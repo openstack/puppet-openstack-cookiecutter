@@ -6,6 +6,9 @@ class {{cookiecutter.project_name}}::params {
 
   include ::openstacklib::defaults
 
+  $group = '{{cookiecutter.project_name}}'
+
+
   case $::osfamily {
     'RedHat': {
     }

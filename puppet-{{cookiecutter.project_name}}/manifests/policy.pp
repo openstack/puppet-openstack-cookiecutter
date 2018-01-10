@@ -29,11 +29,14 @@ class {{cookiecutter.project_name}}::policy (
 ) {
 
   include ::{{cookiecutter.project_name}}::deps
+  include ::{{cookiecutter.project_name}}::params
 
   validate_hash($policies)
 
   Openstacklib::Policy::Base {
-    file_path => $policy_path,
+    file_path  => $policy_path,
+    file_user  => 'root',
+    file_group => $::{{cookiecutter.project_name}}::params::group,
   }
 
   create_resources('openstacklib::policy::base', $policies)
