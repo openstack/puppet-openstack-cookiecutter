@@ -28,5 +28,6 @@ class {{cookiecutter.project_name}}::db::sync(
       Anchor['{{cookiecutter.project_name}}::dbsync::begin']
     ],
     notify      => Anchor['{{cookiecutter.project_name}}::dbsync::end'],
+    tag         => 'openstack-db',
   }
 }

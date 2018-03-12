@@ -10,7 +10,8 @@ describe '{{cookiecutter.project_name}}::db::sync' do
         :path        => [ '/bin', '/usr/bin', ],
         :refreshonly => 'true',
         :user        => '{{cookiecutter.project_name}}',
-        :logoutput   => 'on_failure'
+        :logoutput   => 'on_failure',
+        :tag         => 'openstack-db',
       )
     end
 
