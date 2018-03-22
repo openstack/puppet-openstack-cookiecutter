@@ -38,6 +38,10 @@
 #   (Optional) If set, use this value for max_overflow with sqlalchemy.
 #   Defaults to $::os_service_default
 #
+# [*database_pool_timeout*]
+#   (Optional) If set, use this value for pool_timeout with SQLAlchemy.
+#   Defaults to $::os_service_default
+#
 class {{cookiecutter.project_name}}::db (
   $database_connection     = 'sqlite:////var/lib/{{cookiecutter.project_name}}/{{cookiecutter.project_name}}.sqlite',
   $database_idle_timeout   = $::os_service_default,
@@ -47,6 +51,7 @@ class {{cookiecutter.project_name}}::db (
   $database_max_retries    = $::os_service_default,
   $database_retry_interval = $::os_service_default,
   $database_max_overflow   = $::os_service_default,
+  $database_pool_timeout   = $::os_service_default,
 ) {
 
   include ::{{cookiecutter.project_name}}::deps
@@ -63,5 +68,6 @@ class {{cookiecutter.project_name}}::db (
     retry_interval => $database_retry_interval,
     max_pool_size  => $database_max_pool_size,
     max_overflow   => $database_max_overflow,
+    pool_timeout   => $database_pool_timeout,
   }
 }
