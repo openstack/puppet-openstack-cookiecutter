@@ -15,9 +15,6 @@
 
 export SCRIPT_DIR=$(cd `dirname $0` && pwd -P)
 source $SCRIPT_DIR/functions
-if [ "4.8" != "latest" ]; then
-   export PUPPET_GEM_VERSION='~> 4.8.0'
-fi
 
 prepare_environment
 
