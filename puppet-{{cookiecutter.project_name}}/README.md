@@ -1,5 +1,9 @@
-{{cookiecutter.project_name}}
-=======
+Team and repository tags
+========================
+
+[![Team and repository tags](https://governance.openstack.org/tc/badges/{{cookiecutter.project_name}}.svg)](https://governance.openstack.org/tc/reference/tags/index.html)
+
+<!-- Change things from this point on -->
 
 #### Table of Contents
 
