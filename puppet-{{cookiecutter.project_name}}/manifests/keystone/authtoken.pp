@@ -41,7 +41,7 @@
 #   (Optional) Authentication type to load
 #   Defaults to 'password'.
 #
-# [*auth_uri*]
+# [*www_authenticate_uri*]
 #   (Optional) Complete public Identity API endpoint.
 #   Defaults to 'http://localhost:5000'.
 #
@@ -187,7 +187,7 @@ class {{cookiecutter.project_name}}::keystone::authtoken(
   $insecure                       = $::os_service_default,
   $auth_section                   = $::os_service_default,
   $auth_type                      = 'password',
-  $auth_uri                       = 'http://localhost:5000',
+  $www_authenticate_uri           = 'http://localhost:5000',
   $auth_version                   = $::os_service_default,
   $cache                          = $::os_service_default,
   $cafile                         = $::os_service_default,
@@ -221,7 +221,7 @@ class {{cookiecutter.project_name}}::keystone::authtoken(
     password                       => $password,
     project_name                   => $project_name,
     auth_url                       => $auth_url,
-    auth_uri                       => $auth_uri,
+    www_authenticate_uri           => $www_authenticate_uri,
     auth_version                   => $auth_version,
     auth_type                      => $auth_type,
     auth_section                   => $auth_section,
