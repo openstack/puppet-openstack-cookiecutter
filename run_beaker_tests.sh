@@ -19,7 +19,7 @@ source $SCRIPT_DIR/functions
 prepare_environment
 
 # run beaker tests
-export BEAKER_set=nodepool-centos7
+export BEAKER_set=${BEAKER_set:-nodepool-centos7}
 export BEAKER_debug=yes
 export BEAKER_color=no
 $GEM_HOME/bin/bundle exec rspec spec/acceptance
