@@ -1,22 +1,23 @@
 require 'spec_helper'
 
 describe '{{cookiecutter.project_name}}::db::postgresql' do
-
   let :pre_condition do
     'include postgresql::server'
   end
 
   let :required_params do
-    { :password => 'pw' }
+    {
+      :password => 'pw'
+    }
   end
 
-  shared_examples_for '{{cookiecutter.project_name}}-db-postgresql' do
+  shared_examples '{{cookiecutter.project_name}}-db-postgresql' do
     context 'with only required parameters' do
       let :params do
         required_params
       end
 
-      it { is_expected.to contain_postgresql__server__db('{{cookiecutter.project_name}}').with(
+      it { should contain_postgresql__server__db('{{cookiecutter.project_name}}').with(
         :user     => '{{cookiecutter.project_name}}',
         :password => 'md5c530c33636c58ae83ca933f39319273e'
       )}

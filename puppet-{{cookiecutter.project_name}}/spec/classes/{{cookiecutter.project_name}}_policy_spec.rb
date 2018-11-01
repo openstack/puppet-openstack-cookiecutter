@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe '{{cookiecutter.project_name}}::policy' do
-  shared_examples_for '{{cookiecutter.project_name}}-policies' do
+  shared_examples '{{cookiecutter.project_name}}-policies' do
     let :params do
       {
         :policy_path => '/etc/{{cookiecutter.project_name}}/policy.json',
@@ -14,14 +14,12 @@ describe '{{cookiecutter.project_name}}::policy' do
       }
     end
 
-    it 'set up the policies' do
-      is_expected.to contain_openstacklib__policy__base('context_is_admin').with({
-        :key        => 'context_is_admin',
-        :value      => 'foo:bar',
-        :file_user  => 'root',
-        :file_group => '{{cookiecutter.project_name}}',
-      })
-    end
+    it { should contain_openstacklib__policy__base('context_is_admin').with(
+      :key        => 'context_is_admin',
+      :value      => 'foo:bar',
+      :file_user  => 'root',
+      :file_group => '{{cookiecutter.project_name}}',
+    )}
   end
 
   on_supported_os({
