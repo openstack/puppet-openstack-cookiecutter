@@ -52,6 +52,10 @@ class {{cookiecutter.project_name}}::db::postgresql(
     privileges    => $privileges,
   }
 
+  Anchor['{{cookiecutter.project_name}}::db::begin']
+  ~> Class['{{cookiecutter.project_name}}::db::postgresql']
+  ~> Anchor['{{cookiecutter.project_name}}::db::end']
+
   ::Openstacklib::Db::Postgresql['{{cookiecutter.project_name}}'] ~> Exec<| title == '{{cookiecutter.project_name}}-manage db_sync' |>
 
 }
