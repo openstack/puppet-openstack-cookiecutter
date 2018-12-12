@@ -4,19 +4,19 @@
 # == Parameters
 #
 # [*extra_params*]
-#   (optional) String of extra command line parameters to append
+#   (Optional) String of extra command line parameters to append
 #   to the {{cookiecutter.project_name}}-dbsync command.
 #   Defaults to undef
 #
 class {{cookiecutter.project_name}}::db::sync(
-  $extra_params  = undef,
+  $extra_params = undef,
 ) {
 
   include ::{{cookiecutter.project_name}}::deps
 
   exec { '{{cookiecutter.project_name}}-db-sync':
     command     => "{{cookiecutter.project_name}}-manage db_sync ${extra_params}",
-    path        => [ '/bin', '/usr/bin', ],
+    path        => ['/bin', '/usr/bin'],
     user        => '{{cookiecutter.project_name}}',
     refreshonly => true,
     try_sleep   => 5,

@@ -5,55 +5,65 @@
 # === Parameters
 #
 # [*password*]
-#   (required) Password for {{cookiecutter.project_name}} user.
+#   (Required) Password for {{cookiecutter.project_name}} user.
 #
 # [*ensure*]
-#   (optional) Ensure state of keystone service identity. Defaults to 'present'.
+#   (Optional) Ensure state of keystone service identity.
+#   Defaults to 'present'.
 #
 # [*auth_name*]
-#   Username for {{cookiecutter.project_name}} service. Defaults to '{{cookiecutter.project_name}}'.
+#   (Optional) Username for {{cookiecutter.project_name}} service.
+#   Defaults to '{{cookiecutter.project_name}}'.
 #
 # [*email*]
-#   Email for {{cookiecutter.project_name}} user. Defaults to '{{cookiecutter.project_name}}@localhost'.
+#   (Optional) Email for {{cookiecutter.project_name}} user.
+#   Defaults to '{{cookiecutter.project_name}}@localhost'.
 #
 # [*tenant*]
-#   Tenant for {{cookiecutter.project_name}} user. Defaults to 'services'.
+#   (Optional) Tenant for {{cookiecutter.project_name}} user.
+#   Defaults to 'services'.
 #
 # [*configure_endpoint*]
-#   Should {{cookiecutter.project_name}} endpoint be configured? Defaults to 'true'.
+#   (Optional) Should {{cookiecutter.project_name}} endpoint be configured?
+#   Defaults to true.
 #
 # [*configure_user*]
 #   (Optional) Should the service user be configured?
-#   Defaults to 'true'.
+#   Defaults to true.
 #
 # [*configure_user_role*]
 #   (Optional) Should the admin role be configured for the service user?
-#   Defaults to 'true'.
+#   Defaults to true.
 #
 # [*service_type*]
-#   Type of service. Defaults to 'key-manager'.
+#   (Optional) Type of service.
+#   Defaults to 'FIXME'.
 #
 # [*region*]
-#   Region for endpoint. Defaults to 'RegionOne'.
+#   (Optional) Region for endpoint.
+#   Defaults to 'RegionOne'.
 #
 # [*service_name*]
-#   (optional) Name of the service.
+#   (Optional) Name of the service.
 #   Defaults to the value of '{{cookiecutter.project_name}}'.
 #
 # [*service_description*]
-#   (optional) Description of the service.
+#   (Optional) Description of the service.
 #   Default to '{{cookiecutter.project_name}} FIXME Service'
 #
 # [*public_url*]
-#   (optional) The endpoint's public url. (Defaults to 'http://127.0.0.1:FIXME')
+#   (Optional) The endpoint's public url.
 #   This url should *not* contain any trailing '/'.
+#   Defaults to 'http://127.0.0.1:FIXME'
 #
 # [*admin_url*]
-#   (optional) The endpoint's admin url. (Defaults to 'http://127.0.0.1:FIXME')
+#   (Optional) The endpoint's admin url.
 #   This url should *not* contain any trailing '/'.
+#   Defaults to 'http://127.0.0.1:FIXME'
 #
 # [*internal_url*]
-#   (optional) The endpoint's internal url. (Defaults to 'http://127.0.0.1:FIXME')
+#   (Optional) The endpoint's internal url.
+#   Defaults to 'http://127.0.0.1:FIXME'
 #
 class {{cookiecutter.project_name}}::keystone::auth (
   $password,

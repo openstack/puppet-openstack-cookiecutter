@@ -24,14 +24,6 @@
 #    (Optional) Privileges given to the database user.
 #    Default to 'ALL'
 #
-# == Dependencies
-#
-# == Examples
-#
-# == Authors
-#
-# == Copyright
-#
 class {{cookiecutter.project_name}}::db::postgresql(
   $password,
   $dbname     = '{{cookiecutter.project_name}}',
