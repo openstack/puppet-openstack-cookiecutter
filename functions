@@ -4,8 +4,8 @@
 #
 
 prepare_environment() {
-  rm -rf .bundled_gems puppet-whazz default-config.yaml
-  mkdir .bundled_gems
+  rm -rf puppet-whazz default-config.yaml
+  mkdir -p .bundled_gems
   export GEM_HOME=`pwd`/.bundled_gems
   gem install bundler --no-rdoc --no-ri --verbose
 
