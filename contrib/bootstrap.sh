@@ -89,7 +89,7 @@ else
 default_context:
   project_name: $proj
   version: 0.0.1
-  year: 2018
+  year: 2019
 EOF
 fi
 
