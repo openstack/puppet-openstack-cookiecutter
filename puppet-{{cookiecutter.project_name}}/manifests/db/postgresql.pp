@@ -34,8 +34,6 @@ class {{cookiecutter.project_name}}::db::postgresql(
 
   include ::{{cookiecutter.project_name}}::deps
 
-  Class['{{cookiecutter.project_name}}::db::postgresql'] -> Service<| title == '{{cookiecutter.project_name}}' |>
-
   ::openstacklib::db::postgresql { '{{cookiecutter.project_name}}':
     password_hash => postgresql_password($user, $password),
     dbname        => $dbname,
@@ -47,7 +45,5 @@ class {{cookiecutter.project_name}}::db::postgresql(
   Anchor['{{cookiecutter.project_name}}::db::begin']
   ~> Class['{{cookiecutter.project_name}}::db::postgresql']
   ~> Anchor['{{cookiecutter.project_name}}::db::end']
-
-  ::Openstacklib::Db::Postgresql['{{cookiecutter.project_name}}'] ~> Exec<| title == '{{cookiecutter.project_name}}-manage db_sync' |>
 
 }

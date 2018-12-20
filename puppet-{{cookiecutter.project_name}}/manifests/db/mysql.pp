@@ -61,6 +61,4 @@ class {{cookiecutter.project_name}}::db::mysql(
   ~> Class['{{cookiecutter.project_name}}::db::mysql']
   ~> Anchor['{{cookiecutter.project_name}}::db::end']
 
-  ::Openstacklib::Db::Mysql['{{cookiecutter.project_name}}'] ~> Exec<| title == '{{cookiecutter.project_name}}-manage db_sync' |>
-
 }
