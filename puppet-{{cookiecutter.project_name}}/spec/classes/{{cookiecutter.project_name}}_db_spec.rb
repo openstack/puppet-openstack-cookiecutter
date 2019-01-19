@@ -3,6 +3,8 @@ require 'spec_helper'
 describe '{{cookiecutter.project_name}}::db' do
   shared_examples '{{cookiecutter.project_name}}::db' do
     context 'with default parameters' do
+      it { should contain_class('{{cookiecutter.project_name}}::deps') }
+
       it { should contain_oslo__db('{{cookiecutter.project_name}}_config').with(
         :connection     => 'sqlite:////var/lib/{{cookiecutter.project_name}}/{{cookiecutter.project_name}}.sqlite',
         :idle_timeout   => '<SERVICE DEFAULT>',
@@ -31,6 +33,8 @@ describe '{{cookiecutter.project_name}}::db' do
         }
       end
 
+      it { should contain_class('{{cookiecutter.project_name}}::deps') }
+
       it { should contain_oslo__db('{{cookiecutter.project_name}}_config').with(
         :connection     => 'mysql+pymysql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}',
         :idle_timeout   => '3601',
@@ -43,74 +47,6 @@ describe '{{cookiecutter.project_name}}::db' do
         :pool_timeout   => '21',
       )}
     end
-
-    context 'with postgresql backend' do
-      let :params do
-        {
-          :database_connection => 'postgresql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}'
-        }
-      end
-
-      it { should contain_package('python-psycopg2').with(:ensure => 'present') }
-    end
-
-    context 'with MySQL-python library as backend package' do
-      let :params do
-        {
-          :database_connection => 'mysql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}'
-        }
-      end
-
-      it { should contain_package('python-mysqldb').with(:ensure => 'present') }
-    end
-
-    context 'with incorrect database_connection string' do
-      let :params do
-        {
-          :database_connection => 'foodb://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}'
-        }
-      end
-
-      it { should raise_error(Puppet::Error, /validate_re/) }
-    end
-
-    context 'with incorrect pymysql database_connection string' do
-      let :params do
-        {
-          :database_connection => 'foo+pymysql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}'
-        }
-      end
-
-      it { should raise_error(Puppet::Error, /validate_re/) }
-    end
-  end
-
-  shared_examples '{{cookiecutter.project_name}}::db on Debian' do
-    context 'using pymysql driver' do
-      let :params do
-        {
-          :database_connection => 'mysql+pymysql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}'
-        }
-      end
-
-      it { should contain_package('python-pymysql').with(
-        :ensure => 'present',
-        :name   => 'python-pymysql',
-        :tag    => 'openstack'
-      )}
-    end
-  end
-
-  shared_examples '{{cookiecutter.project_name}}::db on RedHat' do
-    context 'using pymysql driver' do
-      let :params do
-        {
-          :database_connection => 'mysql+pymysql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}'
-        }
-      end
-
-      it { should_not contain_package('python-pymysql') }
-    end
   end
 
   on_supported_os({
@@ -122,7 +58,6 @@ describe '{{cookiecutter.project_name}}::db' do
       end
 
       it_behaves_like '{{cookiecutter.project_name}}::db'
-      it_behaves_like "{{cookiecutter.project_name}}::db on #{facts[:osfamily]}"
     end
   end
 end
