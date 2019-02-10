@@ -45,7 +45,7 @@ class {{cookiecutter.project_name}}::db::mysql(
 
   include ::{{cookiecutter.project_name}}::deps
 
-  validate_string($password)
+  validate_legacy(String, 'validate_string', $password)
 
   ::openstacklib::db::mysql { '{{cookiecutter.project_name}}':
     user          => $user,
