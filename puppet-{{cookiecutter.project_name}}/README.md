@@ -30,7 +30,7 @@ Setup
 
 **What the {{cookiecutter.project_name}} module affects**
 
-* [{{cookiecutter.project_name|capitalize}}](https://wiki.openstack.org/wiki/{{cookiecutter.project_name|capitalize}}), the FIXME service for OpenStack.
+* [{{cookiecutter.project_name|capitalize}}](https://docs.openstack.org/{{cookiecutter.project_name|capitalize}}/latest), the FIXME service for OpenStack.
 
 ### Installing {{cookiecutter.project_name}}
 
