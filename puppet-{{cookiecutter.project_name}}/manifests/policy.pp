@@ -31,7 +31,7 @@ class {{cookiecutter.project_name}}::policy (
   include ::{{cookiecutter.project_name}}::deps
   include ::{{cookiecutter.project_name}}::params
 
-  validate_hash($policies)
+  validate_legacy(Hash, 'validate_hash', $policies)
 
   Openstacklib::Policy::Base {
     file_path  => $policy_path,

@@ -26,7 +26,7 @@ class {{cookiecutter.project_name}}::config (
 
   include ::{{cookiecutter.project_name}}::deps
 
-  validate_hash(${{cookiecutter.project_name}}_config)
+  validate_legacy(Hash, 'validate_hash', ${{cookiecutter.project_name}}_config)
 
   create_resources('{{cookiecutter.project_name}}_config', ${{cookiecutter.project_name}}_config)
 }
