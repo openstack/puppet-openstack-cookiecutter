@@ -140,9 +140,9 @@ popd
 #
 if [ -e /usr/zuul-env/bin/zuul-cloner ] ; then
     /usr/zuul-env/bin/zuul-cloner --cache-dir /opt/git \
-        git://git.openstack.org openstack/puppet-modulesync-configs
+        https://git.openstack.org openstack/puppet-modulesync-configs
 else
-    git clone git://git.openstack.org/openstack/puppet-modulesync-configs openstack/puppet-modulesync-configs
+    git clone https://git.openstack.org/openstack/puppet-modulesync-configs openstack/puppet-modulesync-configs
 fi
 pushd openstack/puppet-modulesync-configs/
 #TODO(aschultz): fixme after we unstick the gate
