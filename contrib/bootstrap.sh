@@ -32,7 +32,7 @@ set -e
 proj=$1
 user=$2
 testing=${OS_NEW_MODULE_TEST:+yes}
-cookiecutter_url=https://git.openstack.org/openstack/puppet-openstack-cookiecutter
+cookiecutter_url=https://opendev.org/openstack/puppet-openstack-cookiecutter
 
 if [ -z "$proj" ] || [ -z "$user" ] ; then
     echo "usage: $0 project-name gerrit-user-id"
@@ -140,11 +140,11 @@ popd
 #
 if [ -e /usr/zuul-env/bin/zuul-cloner ] ; then
     /usr/zuul-env/bin/zuul-cloner --cache-dir /opt/git \
-        https://git.openstack.org openstack/puppet-modulesync-configs
+        https://opendev.org x/puppet-modulesync-configs
 else
-    git clone https://git.openstack.org/openstack/puppet-modulesync-configs openstack/puppet-modulesync-configs
+    git clone https://opendev.org/x/puppet-modulesync-configs x/puppet-modulesync-configs
 fi
-pushd openstack/puppet-modulesync-configs/
+pushd x/puppet-modulesync-configs/
 #TODO(aschultz): fixme after we unstick the gate
 # 0.8.x doesn't seem to work with out configs so we need to pin this but the
 # this script is unhappy.

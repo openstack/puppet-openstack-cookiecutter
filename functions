@@ -17,7 +17,7 @@ EOF
 
   # Build fake module
   OS_NEW_MODULE_TEST=yes bash -x ./contrib/bootstrap.sh whazz dummy
-  cd puppet-whazz/openstack/puppet-modulesync-configs/modules/puppet-whazz
+  cd puppet-whazz/x/puppet-modulesync-configs/modules/puppet-whazz
 
   $GEM_HOME/bin/bundle install
 }
