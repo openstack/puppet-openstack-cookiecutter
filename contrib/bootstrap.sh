@@ -112,7 +112,7 @@ popd
 #
 if [ -z "${testing}" ]; then
     pushd openstack
-    git clone https://review.openstack.org/openstack/puppet-$proj
+    git clone https://review.opendev.org/openstack/puppet-$proj
     mv puppet-$proj/.git ../cookiecutter/puppet-$proj/
     popd
 else
@@ -174,7 +174,7 @@ check_gerrit_user
 
 md5password=`ruby -e "require 'digest/md5'; puts 'md5' + Digest::MD5.hexdigest('pw${proj}')"`
 sed -i "s/md5c530c33636c58ae83ca933f39319273e/${md5password}/g" spec/classes/${proj}_db_postgresql_spec.rb
-git remote add gerrit ssh://$user@review.openstack.org:29418/openstack/puppet-$proj.git
+git remote add gerrit ssh://$user@review.opendev.org:29418/openstack/puppet-$proj.git
 git add --all && git commit --amend -am "puppet-${proj}: Initial commit
 
 This is the initial commit for puppet-${proj}.
