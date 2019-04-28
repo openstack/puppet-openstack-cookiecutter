@@ -8,7 +8,7 @@
 #   (Optional) Url used to connect to database.
 #   Defaults to 'sqlite:////var/lib/{{cookiecutter.project_name}}/{{cookiecutter.project_name}}.sqlite'.
 #
-# [*database_idle_timeout*]
+# [*database_connection_recycle_time*]
 #   (Optional) Timeout when db connections should be reaped.
 #   Defaults to $::os_service_default
 #
@@ -43,15 +43,15 @@
 #   Defaults to $::os_service_default
 #
 class {{cookiecutter.project_name}}::db (
-  $database_connection     = 'sqlite:////var/lib/{{cookiecutter.project_name}}/{{cookiecutter.project_name}}.sqlite',
-  $database_idle_timeout   = $::os_service_default,
-  $database_min_pool_size  = $::os_service_default,
-  $database_max_pool_size  = $::os_service_default,
-  $database_db_max_retries = $::os_service_default,
-  $database_max_retries    = $::os_service_default,
-  $database_retry_interval = $::os_service_default,
-  $database_max_overflow   = $::os_service_default,
-  $database_pool_timeout   = $::os_service_default,
+  $database_connection              = 'sqlite:////var/lib/{{cookiecutter.project_name}}/{{cookiecutter.project_name}}.sqlite',
+  $database_connection_recycle_time = $::os_service_default,
+  $database_min_pool_size           = $::os_service_default,
+  $database_max_pool_size           = $::os_service_default,
+  $database_db_max_retries          = $::os_service_default,
+  $database_max_retries             = $::os_service_default,
+  $database_retry_interval          = $::os_service_default,
+  $database_max_overflow            = $::os_service_default,
+  $database_pool_timeout            = $::os_service_default,
 ) {
 
   include ::{{cookiecutter.project_name}}::deps
@@ -60,14 +60,14 @@ class {{cookiecutter.project_name}}::db (
     ['^(sqlite|mysql(\+pymysql)?|postgresql):\/\/(\S+:\S+@\S+\/\S+)?'])
 
   oslo::db { '{{cookiecutter.project_name}}_config':
-    connection     => $database_connection,
-    idle_timeout   => $database_idle_timeout,
-    min_pool_size  => $database_min_pool_size,
-    db_max_retries => $database_db_max_retries,
-    max_retries    => $database_max_retries,
-    retry_interval => $database_retry_interval,
-    max_pool_size  => $database_max_pool_size,
-    max_overflow   => $database_max_overflow,
-    pool_timeout   => $database_pool_timeout,
+    connection              => $database_connection,
+    connection_recycle_time => $database_connection_recycle_time,
+    min_pool_size           => $database_min_pool_size,
+    db_max_retries          => $database_db_max_retries,
+    max_retries             => $database_max_retries,
+    retry_interval          => $database_retry_interval,
+    max_pool_size           => $database_max_pool_size,
+    max_overflow            => $database_max_overflow,
+    pool_timeout            => $database_pool_timeout,
   }
 }
