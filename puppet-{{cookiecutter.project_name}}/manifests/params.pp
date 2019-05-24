@@ -2,6 +2,8 @@
 #
 class {{cookiecutter.project_name}}::params {
 
+  assert_private()
+
   include ::{{cookiecutter.project_name}}::deps
   include ::openstacklib::defaults
 
