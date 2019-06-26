@@ -138,9 +138,9 @@ popd
 
 # Step 4: Retrieve the puppet-modulesync-configs directory and configure it for your need
 #
-if [ -e /usr/zuul-env/bin/zuul-cloner ] ; then
-    /usr/zuul-env/bin/zuul-cloner --cache-dir /opt/git \
-        https://opendev.org x/puppet-modulesync-configs
+if [ -d /home/zuul/src/opendev.org/x/puppet-modulesync-configs ]; then
+    [ ! -d x/puppet-modulesync-configs ] && mkdir -p x/puppet-modulesync-configs
+    cp -dR /home/zuul/src/opendev.org/x/puppet-modulesync-configs/. x/puppet-modulesync-configs
 else
     git clone https://opendev.org/x/puppet-modulesync-configs x/puppet-modulesync-configs
 fi
