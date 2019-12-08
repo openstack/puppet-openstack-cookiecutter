@@ -28,8 +28,8 @@ class {{cookiecutter.project_name}}::policy (
   $policy_path = '/etc/{{cookiecutter.project_name}}/policy.json',
 ) {
 
-  include ::{{cookiecutter.project_name}}::deps
-  include ::{{cookiecutter.project_name}}::params
+  include {{cookiecutter.project_name}}::deps
+  include {{cookiecutter.project_name}}::params
 
   validate_legacy(Hash, 'validate_hash', $policies)
 

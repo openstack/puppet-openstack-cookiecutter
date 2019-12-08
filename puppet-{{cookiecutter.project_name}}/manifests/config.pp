@@ -24,7 +24,7 @@ class {{cookiecutter.project_name}}::config (
   ${{cookiecutter.project_name}}_config = {},
 ) {
 
-  include ::{{cookiecutter.project_name}}::deps
+  include {{cookiecutter.project_name}}::deps
 
   validate_legacy(Hash, 'validate_hash', ${{cookiecutter.project_name}}_config)
 

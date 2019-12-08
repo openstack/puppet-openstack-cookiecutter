@@ -12,7 +12,7 @@ class {{cookiecutter.project_name}}::db::sync(
   $extra_params = undef,
 ) {
 
-  include ::{{cookiecutter.project_name}}::deps
+  include {{cookiecutter.project_name}}::deps
 
   exec { '{{cookiecutter.project_name}}-db-sync':
     command     => "{{cookiecutter.project_name}}-manage db_sync ${extra_params}",

@@ -43,7 +43,7 @@ class {{cookiecutter.project_name}}::db::mysql(
   $allowed_hosts = undef
 ) {
 
-  include ::{{cookiecutter.project_name}}::deps
+  include {{cookiecutter.project_name}}::deps
 
   validate_legacy(String, 'validate_string', $password)
 

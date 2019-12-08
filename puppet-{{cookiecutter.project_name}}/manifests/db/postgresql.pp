@@ -32,7 +32,7 @@ class {{cookiecutter.project_name}}::db::postgresql(
   $privileges = 'ALL',
 ) {
 
-  include ::{{cookiecutter.project_name}}::deps
+  include {{cookiecutter.project_name}}::deps
 
   ::openstacklib::db::postgresql { '{{cookiecutter.project_name}}':
     password_hash => postgresql_password($user, $password),

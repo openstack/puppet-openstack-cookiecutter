@@ -54,7 +54,7 @@ class {{cookiecutter.project_name}}::db (
   $database_pool_timeout            = $::os_service_default,
 ) {
 
-  include ::{{cookiecutter.project_name}}::deps
+  include {{cookiecutter.project_name}}::deps
 
   validate_legacy(Oslo::Dbconn, 'validate_re', $database_connection,
     ['^(sqlite|mysql(\+pymysql)?|postgresql):\/\/(\S+:\S+@\S+\/\S+)?'])
