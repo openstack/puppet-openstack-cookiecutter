@@ -8,7 +8,6 @@ describe '{{cookiecutter.project_name}}::db' do
       it { should contain_oslo__db('{{cookiecutter.project_name}}_config').with(
         :connection              => 'sqlite:////var/lib/{{cookiecutter.project_name}}/{{cookiecutter.project_name}}.sqlite',
         :connection_recycle_time => '<SERVICE DEFAULT>',
-        :min_pool_size           => '<SERVICE DEFAULT>',
         :db_max_retries          => '<SERVICE DEFAULT>',
         :max_pool_size           => '<SERVICE DEFAULT>',
         :max_retries             => '<SERVICE DEFAULT>',
@@ -23,7 +22,6 @@ describe '{{cookiecutter.project_name}}::db' do
         {
           :database_connection              => 'mysql+pymysql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}',
           :database_connection_recycle_time => '3601',
-          :database_min_pool_size           => '2',
           :database_db_max_retries          => '-1',
           :database_max_retries             => '11',
           :database_retry_interval          => '11',
@@ -38,7 +36,6 @@ describe '{{cookiecutter.project_name}}::db' do
       it { should contain_oslo__db('{{cookiecutter.project_name}}_config').with(
         :connection              => 'mysql+pymysql://{{cookiecutter.project_name}}:{{cookiecutter.project_name}}@localhost/{{cookiecutter.project_name}}',
         :connection_recycle_time => '3601',
-        :min_pool_size           => '2',
         :db_max_retries          => '-1',
         :max_pool_size           => '11',
         :max_retries             => '11',

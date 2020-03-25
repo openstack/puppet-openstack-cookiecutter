@@ -26,10 +26,6 @@
 #   (Optional) Interval between retries of opening a database connection.
 #   Defaults to $::os_service_default
 #
-# [*database_min_pool_size*]
-#   (Optional) Minimum number of SQL connections to keep open in a pool.
-#   Defaults to $::os_service_default
-#
 # [*database_max_pool_size*]
 #   (Optional)Maximum number of SQL connections to keep open in a pool.
 #   Defaults to $::os_service_default
@@ -45,7 +41,6 @@
 class {{cookiecutter.project_name}}::db (
   $database_connection              = 'sqlite:////var/lib/{{cookiecutter.project_name}}/{{cookiecutter.project_name}}.sqlite',
   $database_connection_recycle_time = $::os_service_default,
-  $database_min_pool_size           = $::os_service_default,
   $database_max_pool_size           = $::os_service_default,
   $database_db_max_retries          = $::os_service_default,
   $database_max_retries             = $::os_service_default,
@@ -62,7 +57,6 @@ class {{cookiecutter.project_name}}::db (
   oslo::db { '{{cookiecutter.project_name}}_config':
     connection              => $database_connection,
     connection_recycle_time => $database_connection_recycle_time,
-    min_pool_size           => $database_min_pool_size,
     db_max_retries          => $database_db_max_retries,
     max_retries             => $database_max_retries,
     retry_interval          => $database_retry_interval,
