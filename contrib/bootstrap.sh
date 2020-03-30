@@ -74,22 +74,22 @@ if [ -z "${testing}" ]; then
 else
     tmp_var="${PWD}/puppet-${proj}"
     cookiecutter_conf="${PWD}/default-config.yaml"
-    # https://github.com/audreyr/cookiecutter/pull/621
-    if ! grep -q poyo /usr/lib/python2.7/site-packages/cookiecutter-*.egg-info/requires.txt; then
-        # Requires gcc
-        if [ -z "$(which gcc 2>/dev/null)" ]; then
-            echo "GCC is required to install cookiecutter."
-            exit 1
-        fi
-        sudo pip install ruamel.yaml
+    set +e
+    which pip3 2>&1
+    ret=$?
+    set -e
+    if [ $ret -eq 0 ]; then
+      pip_bin=pip3
+    else
+      pip_bin=pip
     fi
-    sudo pip install cookiecutter==1.3.0
+    sudo $pip_bin install cookiecutter==1.7.0
     cat > "${cookiecutter_conf}" <<EOF
 ---
 default_context:
   project_name: $proj
   version: 0.0.1
-  year: 2019
+  year: 2020
 EOF
 fi
 
