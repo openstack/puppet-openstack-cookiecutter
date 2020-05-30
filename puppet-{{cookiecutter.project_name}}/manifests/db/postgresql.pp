@@ -35,11 +35,11 @@ class {{cookiecutter.project_name}}::db::postgresql(
   include {{cookiecutter.project_name}}::deps
 
   ::openstacklib::db::postgresql { '{{cookiecutter.project_name}}':
-    password_hash => postgresql_password($user, $password),
-    dbname        => $dbname,
-    user          => $user,
-    encoding      => $encoding,
-    privileges    => $privileges,
+    password   => $password,
+    dbname     => $dbname,
+    user       => $user,
+    encoding   => $encoding,
+    privileges => $privileges,
   }
 
   Anchor['{{cookiecutter.project_name}}::db::begin']

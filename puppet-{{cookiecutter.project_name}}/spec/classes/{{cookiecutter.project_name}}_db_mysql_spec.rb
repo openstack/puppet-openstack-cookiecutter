@@ -7,7 +7,7 @@ describe '{{cookiecutter.project_name}}::db::mysql' do
 
   let :required_params do
     {
-      :password => 'fooboozoo_default_password'
+      :password => '{{cookiecutter.project_name}}pass'
     }
   end
 
@@ -18,12 +18,12 @@ describe '{{cookiecutter.project_name}}::db::mysql' do
       end
 
       it { should contain_openstacklib__db__mysql('{{cookiecutter.project_name}}').with(
-        :user          => '{{cookiecutter.project_name}}',
-        :password_hash => '*3DDF34A86854A312A8E2C65B506E21C91800D206',
-        :dbname        => '{{cookiecutter.project_name}}',
-        :host          => '127.0.0.1',
-        :charset       => 'utf8',
-        :collate       => 'utf8_general_ci',
+        :user     => '{{cookiecutter.project_name}}',
+        :password => '{{cookiecutter.project_name}}pass',
+        :dbname   => '{{cookiecutter.project_name}}',
+        :host     => '127.0.0.1',
+        :charset  => 'utf8',
+        :collate  => 'utf8_general_ci',
       )}
     end
 
@@ -34,7 +34,7 @@ describe '{{cookiecutter.project_name}}::db::mysql' do
 
       it { should contain_openstacklib__db__mysql('{{cookiecutter.project_name}}').with(
         :user          => '{{cookiecutter.project_name}}',
-        :password_hash => '*3DDF34A86854A312A8E2C65B506E21C91800D206',
+        :password      => '{{cookiecutter.project_name}}pass',
         :dbname        => '{{cookiecutter.project_name}}',
         :host          => '127.0.0.1',
         :charset       => 'utf8',
@@ -50,7 +50,7 @@ describe '{{cookiecutter.project_name}}::db::mysql' do
 
       it { should contain_openstacklib__db__mysql('{{cookiecutter.project_name}}').with(
         :user          => '{{cookiecutter.project_name}}',
-        :password_hash => '*3DDF34A86854A312A8E2C65B506E21C91800D206',
+        :password      => '{{cookiecutter.project_name}}pass',
         :dbname        => '{{cookiecutter.project_name}}',
         :host          => '127.0.0.1',
         :charset       => 'utf8',

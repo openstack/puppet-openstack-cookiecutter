@@ -7,7 +7,7 @@ describe '{{cookiecutter.project_name}}::db::postgresql' do
 
   let :required_params do
     {
-      :password => 'pw'
+      :password => '{{cookiecutter.project_name}}pass'
     }
   end
 
@@ -17,9 +17,13 @@ describe '{{cookiecutter.project_name}}::db::postgresql' do
         required_params
       end
 
-      it { should contain_postgresql__server__db('{{cookiecutter.project_name}}').with(
-        :user     => '{{cookiecutter.project_name}}',
-        :password => 'md5c530c33636c58ae83ca933f39319273e'
+      it { should contain_class('{{cookiecutter.project_name}}::deps') }
+
+      it { should contain_openstacklib__db__postgresql('{{cookiecutter.project_name}}').with(
+        :password   => params[:password],
+        :dbname     => '{{cookiecutter.project_name}}',
+        :user       => '{{cookiecutter.project_name}}',
+        :privileges => 'ALL',
       )}
     end
   end
