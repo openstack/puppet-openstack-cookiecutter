@@ -41,6 +41,8 @@ describe '{{cookiecutter.project_name}}::keystone::authtoken' do
         should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/memcached_servers').with_value('<SERVICE DEFAULT>')
         should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/region_name').with_value('<SERVICE DEFAULT>')
         should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/token_cache_time').with_value('<SERVICE DEFAULT>')
+        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/service_token_roles').with_value('<SERVICE DEFAULT>')
+        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/service_token_roles_required').with_value('<SERVICE DEFAULT>')
       }
     end
 
@@ -79,6 +81,8 @@ describe '{{cookiecutter.project_name}}::keystone::authtoken' do
           :manage_memcache_package        => true,
           :region_name                    => 'region2',
           :token_cache_time               => '301',
+          :service_token_roles            => ['service'],
+          :service_token_roles_required   => false,
         })
       end
 
@@ -114,6 +118,8 @@ describe '{{cookiecutter.project_name}}::keystone::authtoken' do
         should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/memcached_servers').with_value('memcached01:11211,memcached02:11211')
         should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/region_name').with_value(params[:region_name])
         should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/token_cache_time').with_value(params[:token_cache_time])
+        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/service_token_roles').with_value(params[:service_token_roles])
+        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/service_token_roles_required').with_value(params[:service_token_roles_required])
       }
 
       it { should contain_package('python-memcache') }
