@@ -51,9 +51,6 @@ class {{cookiecutter.project_name}}::db (
 
   include {{cookiecutter.project_name}}::deps
 
-  validate_legacy(Oslo::Dbconn, 'validate_re', $database_connection,
-    ['^(sqlite|mysql(\+pymysql)?|postgresql):\/\/(\S+:\S+@\S+\/\S+)?'])
-
   oslo::db { '{{cookiecutter.project_name}}_config':
     connection              => $database_connection,
     connection_recycle_time => $database_connection_recycle_time,
