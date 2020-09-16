@@ -130,8 +130,8 @@ git add --all && git commit -am "puppet-${proj}: Initial Commit
 
 This is the initial commit for puppet-${proj}.
 It has been automatically generated using cookiecutter[1] and msync[2]
-[1] https://github.com/openstack/puppet-openstack-cookiecutter
-[2] https://github.com/openstack/puppet-modulesync-configs
+[1] https://opendev.org/openstack/puppet-openstack-cookiecutter
+[2] https://opendev.org/x/puppet-modulesync-configs
 "
 cleanup_gerrit_user
 popd
@@ -180,8 +180,8 @@ git add --all && git commit --amend -am "puppet-${proj}: Initial commit
 This is the initial commit for puppet-${proj}.
 It has been automatically generated using cookiecutter[1] and msync[2]
 
-[1] https://github.com/openstack/puppet-openstack-cookiecutter
-[2] https://github.com/openstack/puppet-modulesync-configs
+[1] https://opendev.org/openstack/puppet-openstack-cookiecutter
+[2] https://opendev.org/x/puppet-modulesync-configs
 "
 
 cleanup_gerrit_user

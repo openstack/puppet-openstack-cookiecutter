@@ -9,12 +9,17 @@
 #
 # git config --global core.excludesfile '~/.gitignore'
 
+pkg/
 Gemfile.lock
-spec/fixtures/modules/*
-spec/fixtures/manifests/site.pp
-pkg
 vendor/
-/openstack/
+spec/fixtures/
+.vagrant/
+.bundle/
+coverage/
+.idea/
+*.iml
+/openstack
+/log
 
 # Files created by releasenotes build
 releasenotes/build

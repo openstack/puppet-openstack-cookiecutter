@@ -65,7 +65,7 @@
             "version_requirement": ">= 6.0.0 < 7.0.0"
         }
     ],
-    "source": "git://github.com/openstack/puppet-{{cookiecutter.project_name}}.git",
+    "source": "https://opendev.org/openstack/puppet-{{cookiecutter.project_name}}",
     "summary": "Puppet module for OpenStack {{cookiecutter.project_name|capitalize}}",
     "version": "{{cookiecutter.version}}"
 }
