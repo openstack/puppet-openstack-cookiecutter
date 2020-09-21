@@ -28,4 +28,4 @@ There are two ways to create the boilerplate for the puppet module.
 
 ## What's next
 
-Once the boilerplate created, in order to be compliant with the other modules, the files managed by [msync](https://github.com/puppet-community/modulesync), (or [configs](https://opendev.org/openstack/puppet-modulesync-configs/)) needs to be in the project folder. Once synced module is ready, announce its existence to the ML, make the proper patch to openstack-infra and finally wait for the reviews to do the rest.
+Once the boilerplate created, in order to be compliant with the other modules, the files managed by [msync](https://github.com/voxpupuli/modulesync), (or [configs](https://opendev.org/x/puppet-modulesync-configs/)) needs to be in the project folder. Once synced module is ready, announce its existence to the ML, make the proper patch to openstack-infra and finally wait for the reviews to do the rest.
