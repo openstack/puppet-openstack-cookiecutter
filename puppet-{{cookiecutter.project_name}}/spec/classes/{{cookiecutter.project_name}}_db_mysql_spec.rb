@@ -17,6 +17,8 @@ describe '{{cookiecutter.project_name}}::db::mysql' do
         required_params
       end
 
+      it { is_expected.to contain_class('{{cookiecutter.project_name}}::deps') }
+
       it { should contain_openstacklib__db__mysql('{{cookiecutter.project_name}}').with(
         :user     => '{{cookiecutter.project_name}}',
         :password => '{{cookiecutter.project_name}}pass',
