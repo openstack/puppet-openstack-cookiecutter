@@ -2,6 +2,9 @@ require 'spec_helper'
 
 describe '{{cookiecutter.project_name}}::db::sync' do
   shared_examples '{{cookiecutter.project_name}}-dbsync' do
+
+    it { is_expected.to contain_class('{{cookiecutter.project_name}}::deps') }
+
     it { should contain_exec('{{cookiecutter.project_name}}-db-sync').with(
       :command     => '{{cookiecutter.project_name}}-manage db_sync ',
       :path        => [ '/bin', '/usr/bin', ],
