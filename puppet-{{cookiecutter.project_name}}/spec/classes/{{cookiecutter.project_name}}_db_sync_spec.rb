@@ -11,6 +11,7 @@ describe '{{cookiecutter.project_name}}::db::sync' do
       :refreshonly => 'true',
       :try_sleep   => 5,
       :tries       => 10,
+      :timeout     => 300,
       :user        => '{{cookiecutter.project_name}}',
       :logoutput   => 'on_failure',
       :subscribe   => [
