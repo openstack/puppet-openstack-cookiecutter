@@ -4,6 +4,10 @@
 #
 # === Parameters
 #
+# [*enforce_scope*]
+#  (Optional) Whether or not to enforce scope when evaluating policies.
+#  Defaults to $::os_service_default.
+#
 # [*policies*]
 #   (Optional) Set of policies to configure for {{cookiecutter.project_name}}
 #   Example :
@@ -24,8 +28,9 @@
 #   Defaults to /etc/{{cookiecutter.project_name}}/policy.yaml
 #
 class {{cookiecutter.project_name}}::policy (
-  $policies    = {},
-  $policy_path = '/etc/{{cookiecutter.project_name}}/policy.yaml',
+  $enforce_scope = $::os_service_default,
+  $policies      = {},
+  $policy_path   = '/etc/{{cookiecutter.project_name}}/policy.yaml',
 ) {
 
   include {{cookiecutter.project_name}}::deps
@@ -42,6 +47,9 @@ class {{cookiecutter.project_name}}::policy (
 
   create_resources('openstacklib::policy::base', $policies)
 
-  oslo::policy { '{{cookiecutter.project_name}}_config': policy_file => $policy_path }
+  oslo::policy { '{{cookiecutter.project_name}}_config':
+    enforce_scope => $enforce_scope,
+    policy_file   => $policy_path
+  }
 
 }
