@@ -4,7 +4,7 @@ describe '{{cookiecutter.project_name}}::policy' do
   shared_examples '{{cookiecutter.project_name}}-policies' do
     let :params do
       {
-        :policy_path => '/etc/{{cookiecutter.project_name}}/policy.json',
+        :policy_path => '/etc/{{cookiecutter.project_name}}/policy.yaml',
         :policies    => {
           'context_is_admin' => {
             'key'   => 'context_is_admin',
@@ -14,12 +14,18 @@ describe '{{cookiecutter.project_name}}::policy' do
       }
     end
 
-    it { should contain_openstacklib__policy__base('context_is_admin').with(
-      :key        => 'context_is_admin',
-      :value      => 'foo:bar',
-      :file_user  => 'root',
-      :file_group => '{{cookiecutter.project_name}}',
-    )}
+    it 'set up the policies' do
+      is_expected.to contain_openstacklib__policy__base('context_is_admin').with(
+        :key         => 'context_is_admin',
+        :value       => 'foo:bar',
+        :file_user   => 'root',
+        :file_group  => '{{cookiecutter.project_name}}',
+        :file_format => 'yaml',
+      )
+      is_expected.to contain_oslo__policy('{{cookiecutter.project_name}}_config').with(
+        :policy_file => '/etc/{{cookiecutter.project_name}}/policy.yaml',
+      )
+    end
   end
 
   on_supported_os({
