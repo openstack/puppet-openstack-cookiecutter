@@ -32,11 +32,16 @@
 #   (Optional) Path to the {{cookiecutter.project_name}} policy.yaml file
 #   Defaults to /etc/{{cookiecutter.project_name}}/policy.yaml
 #
+# [*policy_dirs*]
+#   (Optional) Path to the {{cookiecutter.project_name}} policy folder
+#   Defaults to $::os_service_default
+#
 class {{cookiecutter.project_name}}::policy (
   $enforce_scope        = $::os_service_default,
   $enforce_new_defaults = $::os_service_default,
   $policies             = {},
   $policy_path          = '/etc/{{cookiecutter.project_name}}/policy.yaml',
+  $policy_dirs          = $::os_service_default,
 ) {
 
   include {{cookiecutter.project_name}}::deps
@@ -56,7 +61,8 @@ class {{cookiecutter.project_name}}::policy (
   oslo::policy { '{{cookiecutter.project_name}}_config':
     enforce_scope        => $enforce_scope,
     enforce_new_defaults => $enforce_new_defaults,
-    policy_file          => $policy_path
+    policy_file          => $policy_path,
+    policy_dirs          => $policy_dirs,
   }
 
 }
