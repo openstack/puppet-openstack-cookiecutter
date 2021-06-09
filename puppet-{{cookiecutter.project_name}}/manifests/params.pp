@@ -7,7 +7,6 @@ class {{cookiecutter.project_name}}::params {
   include {{cookiecutter.project_name}}::deps
   include openstacklib::defaults
 
-  $pyvers = $::openstacklib::defaults::pyvers
   $group = '{{cookiecutter.project_name}}'
 
   case $::osfamily {
