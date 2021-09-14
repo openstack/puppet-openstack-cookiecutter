@@ -28,6 +28,7 @@ describe '{{cookiecutter.project_name}}::logging' do
       :syslog_log_facility           => 'LOG_FOO',
       :log_dir                       => '/var/log',
       :log_file                      => '/var/tmp/{{cookiecutter.project_name}}_random.log',
+      :watch_log_file                => true,
       :debug                         => true,
     }
   end
@@ -67,6 +68,7 @@ describe '{{cookiecutter.project_name}}::logging' do
       :syslog_log_facility => '<SERVICE DEFAULT>',
       :log_dir             => '/var/log/{{cookiecutter.project_name}}',
       :log_file            => '/var/log/{{cookiecutter.project_name}}/{{cookiecutter.project_name}}.log',
+      :watch_log_file      => '<SERVICE DEFAULT>',
       :debug               => '<SERVICE DEFAULT>',
     )}
   end
@@ -80,6 +82,7 @@ describe '{{cookiecutter.project_name}}::logging' do
       :syslog_log_facility => 'LOG_FOO',
       :log_dir             => '/var/log',
       :log_file            => '/var/tmp/{{cookiecutter.project_name}}_random.log',
+      :watch_log_file      => true,
       :debug               => true,
     )}
   end
