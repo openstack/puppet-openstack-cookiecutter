@@ -3,49 +3,52 @@ require 'spec_helper'
 describe '{{cookiecutter.project_name}}::keystone::authtoken' do
   let :params do
     {
-      :password => 'secrete'
+      :password => '{{cookiecutter.project_name}}_password'
     }
   end
 
   shared_examples '{{cookiecutter.project_name}} authtoken' do
     context 'with default parameters' do
-      it {
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/username').with_value('{{cookiecutter.project_name}}')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/password').with_value('secrete')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/auth_url').with_value('http://localhost:5000')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/project_name').with_value('services')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/user_domain_name').with_value('Default')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/project_domain_name').with_value('Default')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/insecure').with_value('<SERVICE DEFAULT>')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/auth_section').with_value('<SERVICE DEFAULT>')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/auth_type').with_value('password')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/www_authenticate_uri').with_value('http://localhost:5000')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/auth_version').with_value('<SERVICE DEFAULT>')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/cache').with_value('<SERVICE DEFAULT>')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/cafile').with_value('<SERVICE DEFAULT>')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/certfile').with_value('<SERVICE DEFAULT>')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/delay_auth_decision').with_value('<SERVICE DEFAULT>')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/enforce_token_bind').with_value('<SERVICE DEFAULT>')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/http_connect_timeout').with_value('<SERVICE DEFAULT>')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/http_request_max_retries').with_value('<SERVICE DEFAULT>')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/include_service_catalog').with_value('<SERVICE DEFAULT>')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/keyfile').with_value('<SERVICE DEFAULT>')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/memcache_pool_conn_get_timeout').with_value('<SERVICE DEFAULT>')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/memcache_pool_dead_retry').with_value('<SERVICE DEFAULT>')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/memcache_pool_maxsize').with_value('<SERVICE DEFAULT>')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/memcache_pool_socket_timeout').with_value('<SERVICE DEFAULT>')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/memcache_pool_unused_timeout').with_value('<SERVICE DEFAULT>')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/memcache_secret_key').with_value('<SERVICE DEFAULT>')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/memcache_security_strategy').with_value('<SERVICE DEFAULT>')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/memcache_use_advanced_pool').with_value('<SERVICE DEFAULT>')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/memcached_servers').with_value('<SERVICE DEFAULT>')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/region_name').with_value('<SERVICE DEFAULT>')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/token_cache_time').with_value('<SERVICE DEFAULT>')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/service_token_roles').with_value('<SERVICE DEFAULT>')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/service_token_roles_required').with_value('<SERVICE DEFAULT>')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/service_type').with_value('<SERVICE DEFAULT>')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/interface').with_value('<SERVICE DEFAULT>')
-      }
+      it 'configures keystone_authtoken' do
+        is_expected.to contain_keystone__resource__authtoken('{{cookiecutter.project_name}}_config').with(
+          :username                       => '{{cookiecutter.project_name}}',
+          :password                       => '{{cookiecutter.project_name}}_password',
+          :auth_url                       => 'http://localhost:5000',
+          :project_name                   => 'services',
+          :user_domain_name               => 'Default',
+          :project_domain_name            => 'Default',
+          :insecure                       => '<SERVICE DEFAULT>',
+          :auth_section                   => '<SERVICE DEFAULT>',
+          :auth_type                      => 'password',
+          :www_authenticate_uri           => 'http://localhost:5000',
+          :auth_version                   => '<SERVICE DEFAULT>',
+          :cache                          => '<SERVICE DEFAULT>',
+          :cafile                         => '<SERVICE DEFAULT>',
+          :certfile                       => '<SERVICE DEFAULT>',
+          :delay_auth_decision            => '<SERVICE DEFAULT>',
+          :enforce_token_bind             => '<SERVICE DEFAULT>',
+          :http_connect_timeout           => '<SERVICE DEFAULT>',
+          :http_request_max_retries       => '<SERVICE DEFAULT>',
+          :include_service_catalog        => '<SERVICE DEFAULT>',
+          :keyfile                        => '<SERVICE DEFAULT>',
+          :memcache_pool_conn_get_timeout => '<SERVICE DEFAULT>',
+          :memcache_pool_dead_retry       => '<SERVICE DEFAULT>',
+          :memcache_pool_maxsize          => '<SERVICE DEFAULT>',
+          :memcache_pool_socket_timeout   => '<SERVICE DEFAULT>',
+          :memcache_pool_unused_timeout   => '<SERVICE DEFAULT>',
+          :memcache_secret_key            => '<SERVICE DEFAULT>',
+          :memcache_security_strategy     => '<SERVICE DEFAULT>',
+          :memcache_use_advanced_pool     => '<SERVICE DEFAULT>',
+          :memcached_servers              => '<SERVICE DEFAULT>',
+          :manage_memcache_package        => false,
+          :region_name                    => '<SERVICE DEFAULT>',
+          :token_cache_time               => '<SERVICE DEFAULT>',
+          :service_token_roles            => '<SERVICE DEFAULT>',
+          :service_token_roles_required   => '<SERVICE DEFAULT>',
+          :service_type                   => '<SERVICE DEFAULT>',
+          :interface                      => '<SERVICE DEFAULT>',
+        )
+      end
     end
 
     context 'when overriding parameters' do
@@ -54,7 +57,7 @@ describe '{{cookiecutter.project_name}}::keystone::authtoken' do
           :www_authenticate_uri           => 'https://10.0.0.1:9999/',
           :username                       => 'myuser',
           :password                       => 'mypasswd',
-          :auth_url                       => 'https://127.0.0.1:5000',
+          :auth_url                       => 'http://127.0.0.1:5000',
           :project_name                   => 'service_project',
           :user_domain_name               => 'domainX',
           :project_domain_name            => 'domainX',
@@ -90,45 +93,46 @@ describe '{{cookiecutter.project_name}}::keystone::authtoken' do
         })
       end
 
-      it {
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/www_authenticate_uri').with_value('https://10.0.0.1:9999/')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/username').with_value(params[:username])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/password').with_value(params[:password]).with_secret(true)
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/auth_url').with_value(params[:auth_url])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/project_name').with_value(params[:project_name])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/user_domain_name').with_value(params[:user_domain_name])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/project_domain_name').with_value(params[:project_domain_name])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/insecure').with_value(params[:insecure])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/auth_section').with_value(params[:auth_section])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/auth_type').with_value(params[:auth_type])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/auth_version').with_value(params[:auth_version])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/cache').with_value(params[:cache])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/cafile').with_value(params[:cafile])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/certfile').with_value(params[:certfile])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/delay_auth_decision').with_value(params[:delay_auth_decision])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/enforce_token_bind').with_value(params[:enforce_token_bind])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/http_connect_timeout').with_value(params[:http_connect_timeout])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/http_request_max_retries').with_value(params[:http_request_max_retries])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/include_service_catalog').with_value(params[:include_service_catalog])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/keyfile').with_value(params[:keyfile])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/memcache_pool_conn_get_timeout').with_value(params[:memcache_pool_conn_get_timeout])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/memcache_pool_dead_retry').with_value(params[:memcache_pool_dead_retry])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/memcache_pool_maxsize').with_value(params[:memcache_pool_maxsize])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/memcache_pool_socket_timeout').with_value(params[:memcache_pool_socket_timeout])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/memcache_pool_unused_timeout').with_value(params[:memcache_pool_unused_timeout])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/memcache_secret_key').with_value(params[:memcache_secret_key])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/memcache_security_strategy').with_value(params[:memcache_security_strategy])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/memcache_use_advanced_pool').with_value(params[:memcache_use_advanced_pool])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/memcached_servers').with_value('memcached01:11211,memcached02:11211')
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/region_name').with_value(params[:region_name])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/token_cache_time').with_value(params[:token_cache_time])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/service_token_roles').with_value(params[:service_token_roles])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/service_token_roles_required').with_value(params[:service_token_roles_required])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/service_type').with_value(params[:service_type])
-        should contain_{{cookiecutter.project_name}}_config('keystone_authtoken/interface').with_value(params[:interface])
-      }
-
-      it { should contain_package('python-memcache') }
+      it 'configure keystone_authtoken' do
+        is_expected.to contain_keystone__resource__authtoken('{{cookiecutter.project_name}}_config').with(
+          :www_authenticate_uri           => 'https://10.0.0.1:9999/',
+          :username                       => 'myuser',
+          :password                       => 'mypasswd',
+          :auth_url                       => 'http://127.0.0.1:5000',
+          :project_name                   => 'service_project',
+          :user_domain_name               => 'domainX',
+          :project_domain_name            => 'domainX',
+          :insecure                       => false,
+          :auth_section                   => 'new_section',
+          :auth_type                      => 'password',
+          :auth_version                   => 'v3',
+          :cache                          => 'somevalue',
+          :cafile                         => '/opt/stack/data/cafile.pem',
+          :certfile                       => 'certfile.crt',
+          :delay_auth_decision            => false,
+          :enforce_token_bind             => 'permissive',
+          :http_connect_timeout           => '300',
+          :http_request_max_retries       => '3',
+          :include_service_catalog        => true,
+          :keyfile                        => 'keyfile',
+          :memcache_pool_conn_get_timeout => '9',
+          :memcache_pool_dead_retry       => '302',
+          :memcache_pool_maxsize          => '11',
+          :memcache_pool_socket_timeout   => '2',
+          :memcache_pool_unused_timeout   => '61',
+          :memcache_secret_key            => 'secret_key',
+          :memcache_security_strategy     => 'ENCRYPT',
+          :memcache_use_advanced_pool     => true,
+          :memcached_servers              => ['memcached01:11211','memcached02:11211'],
+          :manage_memcache_package        => true,
+          :region_name                    => 'region2',
+          :token_cache_time               => '301',
+          :service_token_roles            => ['service'],
+          :service_token_roles_required   => false,
+          :service_type                   => 'identity',
+          :interface                      => 'internal',
+        )
+      end
     end
   end
 
