@@ -88,7 +88,9 @@ class {{cookiecutter.project_name}}::keystone::auth (
   if $configure_user_role {
     Keystone_user_role["${auth_name}@${tenant}"] ~> Service <| name == '{{cookiecutter.project_name}}-server' |>
   }
-  Keystone_endpoint["${region}/${service_name}::${service_type}"]  ~> Service <| name == '{{cookiecutter.project_name}}-server' |>
+  if $configure_endpoint {
+    Keystone_endpoint["${region}/${service_name}::${service_type}"]  ~> Service <| name == '{{cookiecutter.project_name}}-server' |>
+  }
 
   keystone::resource::service_identity { '{{cookiecutter.project_name}}':
     ensure              => $ensure,
