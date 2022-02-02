@@ -49,7 +49,7 @@
 #
 # [*service_description*]
 #   (Optional) Description of the service.
-#   Default to '{{cookiecutter.project_name}} FIXME Service'
+#   Default to 'OpenStack FIXME Service'
 #
 # [*public_url*]
 #   (Optional) The endpoint's public url.
@@ -75,7 +75,7 @@ class {{cookiecutter.project_name}}::keystone::auth (
   $configure_user      = true,
   $configure_user_role = true,
   $service_name        = '{{cookiecutter.project_name}}',
-  $service_description = '{{cookiecutter.project_name}} FIXME Service',
+  $service_description = 'OpenStack FIXME Service',
   $service_type        = 'FIXME',
   $region              = 'RegionOne',
   $public_url          = 'http://127.0.0.1:FIXME',
