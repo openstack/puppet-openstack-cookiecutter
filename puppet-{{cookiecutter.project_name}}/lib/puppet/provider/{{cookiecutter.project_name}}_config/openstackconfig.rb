@@ -1,6 +1,6 @@
 Puppet::Type.type(:{{cookiecutter.project_name}}_config).provide(
-  :ini_setting,
-  :parent => Puppet::Type.type(:openstack_config).provider(:ini_setting)
+  :openstackconfig,
+  :parent => Puppet::Type.type(:openstack_config).provider(:ruby)
 ) do
 
   def self.file_path

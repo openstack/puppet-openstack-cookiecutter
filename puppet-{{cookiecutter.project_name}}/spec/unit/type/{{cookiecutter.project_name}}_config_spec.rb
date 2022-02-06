@@ -29,12 +29,12 @@ describe 'Puppet::Type.type(:{{cookiecutter.project_name}}_config)' do
 
   it 'should accept a valid value' do
     @{{cookiecutter.project_name}}_config[:value] = 'bar'
-    expect(@{{cookiecutter.project_name}}_config[:value]).to eq('bar')
+    expect(@{{cookiecutter.project_name}}_config[:value]).to eq(['bar'])
   end
 
   it 'should not accept a value with whitespace' do
     @{{cookiecutter.project_name}}_config[:value] = 'b ar'
-    expect(@{{cookiecutter.project_name}}_config[:value]).to eq('b ar')
+    expect(@{{cookiecutter.project_name}}_config[:value]).to eq(['b ar'])
   end
 
   it 'should accept valid ensure values' do
