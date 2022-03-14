@@ -55,8 +55,8 @@ Puppet::Type.newtype(:{{cookiecutter.project_name}}_config) do
     defaultto('<SERVICE DEFAULT>')
   end
 
-  autorequire(:package) do
-    '{{cookiecutter.project_name}}'
+  autorequire(:anchor) do
+    ['{{cookiecutter.project_name}}::install::end']
   end
 
 end

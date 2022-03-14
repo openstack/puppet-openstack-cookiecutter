@@ -11,7 +11,7 @@ describe '{{cookiecutter.project_name}}::db::mysql' do
     }
   end
 
-  shared_examples '{{cookiecutter.project_name}}-db-mysql' do
+  shared_examples '{{cookiecutter.project_name}}::db::mysql' do
     context 'with only required params' do
       let :params do
         required_params
@@ -70,7 +70,7 @@ describe '{{cookiecutter.project_name}}::db::mysql' do
         facts.merge!(OSDefaults.get_facts())
       end
 
-      it_behaves_like '{{cookiecutter.project_name}}-db-mysql'
+      it_behaves_like '{{cookiecutter.project_name}}::db::mysql'
     end
   end
 end

@@ -52,13 +52,12 @@ describe 'Puppet::Type.type(:{{cookiecutter.project_name}}_config)' do
 
   it 'should autorequire the package that install the file' do
     catalog = Puppet::Resource::Catalog.new
-    package = Puppet::Type.type(:package).new(:name => '{{cookiecutter.project_name}}')
+    package = Puppet::Type.type(:anchor).new(:name => '{{cookiecutter.project_name}}::install::end')
     catalog.add_resource package, @{{cookiecutter.project_name}}_config
     dependency = @{{cookiecutter.project_name}}_config.autorequire
     expect(dependency.size).to eq(1)
     expect(dependency[0].target).to eq(@{{cookiecutter.project_name}}_config)
     expect(dependency[0].source).to eq(package)
   end
-
 
 end

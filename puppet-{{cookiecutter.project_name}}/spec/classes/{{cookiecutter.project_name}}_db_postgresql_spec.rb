@@ -11,7 +11,7 @@ describe '{{cookiecutter.project_name}}::db::postgresql' do
     }
   end
 
-  shared_examples '{{cookiecutter.project_name}}-db-postgresql' do
+  shared_examples '{{cookiecutter.project_name}}::db::postgresql' do
     context 'with only required parameters' do
       let :params do
         required_params
@@ -36,7 +36,10 @@ describe '{{cookiecutter.project_name}}::db::postgresql' do
         facts.merge!(OSDefaults.get_facts({ :concat_basedir => '/var/lib/puppet/concat' }))
       end
 
-      it_behaves_like '{{cookiecutter.project_name}}-db-postgresql'
+      # TODO(tkajinam): Remove this once puppet-postgresql supports CentOS 9
+      unless facts[:osfamily] == 'RedHat' and facts[:operatingsystemmajrelease].to_i >= 9
+        it_behaves_like '{{cookiecutter.project_name}}::db::postgresql'
+      end
     end
   end
 end
