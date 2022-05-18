@@ -23,6 +23,18 @@
 #   (Optional) Tenant for {{cookiecutter.project_name}} user.
 #   Defaults to 'services'.
 #
+# [*roles*]
+#   (Optional) List of roles assigned to aodh user.
+#   Defaults to ['admin']
+#
+# [*system_scope*]
+#   (Optional) Scope for system operations.
+#   Defaults to 'all'
+#
+# [*system_roles*]
+#   (Optional) List of system roles assigned to aodh user.
+#   Defaults to []
+#
 # [*configure_endpoint*]
 #   (Optional) Should {{cookiecutter.project_name}} endpoint be configured?
 #   Defaults to true.
@@ -71,6 +83,9 @@ class {{cookiecutter.project_name}}::keystone::auth (
   $auth_name           = '{{cookiecutter.project_name}}',
   $email               = '{{cookiecutter.project_name}}@localhost',
   $tenant              = 'services',
+  $roles               = ['admin'],
+  $system_scope        = 'all',
+  $system_roles        = [],
   $configure_endpoint  = true,
   $configure_user      = true,
   $configure_user_role = true,
@@ -104,6 +119,9 @@ class {{cookiecutter.project_name}}::keystone::auth (
     auth_name           => $auth_name,
     password            => $password,
     email               => $email,
+    roles               => $roles,
+    system_scope        => $system_scope,
+    system_roles        => $system_roles,
     tenant              => $tenant,
     public_url          => $public_url,
     internal_url        => $internal_url,
