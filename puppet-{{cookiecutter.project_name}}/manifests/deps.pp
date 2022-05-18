@@ -33,7 +33,7 @@ class {{cookiecutter.project_name}}::deps {
 
   # policy config should occur in the config block also.
   Anchor['{{cookiecutter.project_name}}::config::begin']
-  -> Openstacklib::Policy::Base<||>
+  -> Openstacklib::Policy<||>
   ~> Anchor['{{cookiecutter.project_name}}::config::end']
 
   # Installation or config changes will always restart services.
