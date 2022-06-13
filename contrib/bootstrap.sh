@@ -145,10 +145,18 @@ else
     git clone https://opendev.org/x/puppet-modulesync-configs x/puppet-modulesync-configs
 fi
 pushd x/puppet-modulesync-configs/
-#TODO(aschultz): fixme after we unstick the gate
-# 0.8.x doesn't seem to work with out configs so we need to pin this but the
-# this script is unhappy.
-sed -i "s/'>=0.6.0'/['>=0.6.0','<0.8.0']/" Gemfile
+
+# TODO(tkajinam): Remove this once we remove pinning from
+#                 puppet-modulesync-configs
+if grep -q "gem 'modulesync', " ./Gemfile ; then
+  sed -i "s/^gem 'modulesync', .*/gem 'modulesync'/" ./Gemfile
+  find moduleroot/ -type f -exec git mv {} {}.erb \;
+fi
+
+# Purge .git to make sure the git command in the subdirectory does not look up
+# the git infomation at the top directory.
+rm -rf .git
+
 [ -z "${testing}" ] || ${GEM_HOME}/bin/bundle install
 cat > managed_modules.yml <<EOF
 ---
@@ -168,7 +176,8 @@ if [ -z "${testing}" ]; then
 else
     ${GEM_HOME}/bin/bundle exec msync update --noop
 fi
-pushd modules/puppet-$proj
+
+pushd modules/cookiecutter/puppet-$proj
 
 check_gerrit_user
 
@@ -189,7 +198,7 @@ echo "
 -----------------------------------------------------------------------------------------------------
 The new project has been successfully set up.
 
-To submit the initial review please go to ${tmp_var}/openstack/puppet-modulesync-configs/modules/puppet-${proj}
+To submit the initial review please go to ${tmp_var}/openstack/puppet-modulesync-configs/modules/cookiecutter/puppet-${proj}
 and run git review.
 
 Happy Hacking !
