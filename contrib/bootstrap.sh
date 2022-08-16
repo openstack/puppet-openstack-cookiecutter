@@ -146,13 +146,6 @@ else
 fi
 pushd x/puppet-modulesync-configs/
 
-# TODO(tkajinam): Remove this once we remove pinning from
-#                 puppet-modulesync-configs
-if grep -q "gem 'modulesync', " ./Gemfile ; then
-  sed -i "s/^gem 'modulesync', .*/gem 'modulesync'/" ./Gemfile
-  find moduleroot/ -type f -exec git mv {} {}.erb \;
-fi
-
 # Purge .git to make sure the git command in the subdirectory does not look up
 # the git infomation at the top directory.
 rm -rf .git
