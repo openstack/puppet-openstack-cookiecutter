@@ -9,15 +9,14 @@ class {{cookiecutter.project_name}}::params {
 
   $group = '{{cookiecutter.project_name}}'
 
-  case $::osfamily {
+  case $facts['os']['family'] {
     'RedHat': {
     }
     'Debian': {
     }
     default: {
-      fail("Unsupported osfamily: ${::osfamily} operatingsystem: ${::operatingsystem}, \
-module ${module_name} only support osfamily RedHat and Debian")
+      fail("Unsupported osfamily: ${facts['os']['family']}")
     }
 
-  } # Case $::osfamily
+  } # Case $facts['os']['family']
 }
