@@ -18,11 +18,12 @@ class {{cookiecutter.project_name}}::db::sync(
 ) {
 
   include {{cookiecutter.project_name}}::deps
+  include {{cookiecutter.project_name}}::params
 
   exec { '{{cookiecutter.project_name}}-db-sync':
     command     => "{{cookiecutter.project_name}}-manage db_sync ${extra_params}",
     path        => ['/bin', '/usr/bin'],
-    user        => '{{cookiecutter.project_name}}',
+    user        => $::{{cookiecutter.project_name}}::params::user,
     refreshonly => true,
     try_sleep   => 5,
     tries       => 10,
