@@ -7,6 +7,7 @@ class {{cookiecutter.project_name}}::params {
   include {{cookiecutter.project_name}}::deps
   include openstacklib::defaults
 
+  $user  = '{{cookiecutter.project_name}}'
   $group = '{{cookiecutter.project_name}}'
 
   case $facts['os']['family'] {
