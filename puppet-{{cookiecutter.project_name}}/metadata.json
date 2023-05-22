@@ -3,7 +3,7 @@
     "dependencies": [
         {
             "name": "puppetlabs/inifile",
-            "version_requirement": ">=2.0.0 <6.0.0"
+            "version_requirement": ">=2.0.0 <7.0.0"
         },
         {
             "name": "puppetlabs/stdlib",
@@ -11,15 +11,15 @@
         },
         {
             "name": "openstack/keystone",
-            "version_requirement": ">=21.0.0 <22.0.0"
+            "version_requirement": ">=22.0.0 <23.0.0"
         },
         {
             "name": "openstack/openstacklib",
-            "version_requirement": ">=21.0.0 <22.0.0"
+            "version_requirement": ">=22.0.0 <23.0.0"
         },
         {
             "name": "openstack/oslo",
-            "version_requirement": ">=21.0.0 <22.0.0"
+            "version_requirement": ">=22.0.0 <23.0.0"
         }
     ],
     "description": "Installs and configures OpenStack {{cookiecutter.project_name|capitalize}}.",
