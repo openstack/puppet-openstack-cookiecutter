@@ -67,6 +67,7 @@ class {{cookiecutter.project_name}}::policy (
     file_group   => $::{{cookiecutter.project_name}}::params::group,
     file_format  => 'yaml',
     purge_config => $purge_config,
+    tag          => '{{cookiecutter.project_name}}',
   }
 
   create_resources('openstacklib::policy', { $policy_path => $policy_parameters })
