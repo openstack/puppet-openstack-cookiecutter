@@ -48,17 +48,15 @@
 class {{cookiecutter.project_name}}::policy (
   $enforce_scope        = $facts['os_service_default'],
   $enforce_new_defaults = $facts['os_service_default'],
-  $policies             = {},
+  Hash $policies        = {},
   $policy_path          = '/etc/{{cookiecutter.project_name}}/policy.yaml',
   $policy_default_rule  = $facts['os_service_default'],
   $policy_dirs          = $facts['os_service_default'],
-  $purge_config         = false,
+  Boolean $purge_config = false,
 ) {
 
   include {{cookiecutter.project_name}}::deps
   include {{cookiecutter.project_name}}::params
-
-  validate_legacy(Hash, 'validate_hash', $policies)
 
   $policy_parameters = {
     policies     => $policies,

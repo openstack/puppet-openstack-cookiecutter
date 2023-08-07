@@ -21,12 +21,10 @@
 #   or Puppet catalog compilation will fail with duplicate resources.
 #
 class {{cookiecutter.project_name}}::config (
-  ${{cookiecutter.project_name}}_config = {},
+  Hash ${{cookiecutter.project_name}}_config = {},
 ) {
 
   include {{cookiecutter.project_name}}::deps
-
-  validate_legacy(Hash, 'validate_hash', ${{cookiecutter.project_name}}_config)
 
   create_resources('{{cookiecutter.project_name}}_config', ${{cookiecutter.project_name}}_config)
 }

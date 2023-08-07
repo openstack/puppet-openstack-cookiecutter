@@ -34,7 +34,7 @@
 #   Defaults to 'utf8_general_ci'
 #
 class {{cookiecutter.project_name}}::db::mysql(
-  $password,
+  String[1] $password,
   $dbname        = '{{cookiecutter.project_name}}',
   $user          = '{{cookiecutter.project_name}}',
   $host          = '127.0.0.1',
@@ -44,8 +44,6 @@ class {{cookiecutter.project_name}}::db::mysql(
 ) {
 
   include {{cookiecutter.project_name}}::deps
-
-  validate_legacy(String, 'validate_string', $password)
 
   ::openstacklib::db::mysql { '{{cookiecutter.project_name}}':
     user          => $user,
