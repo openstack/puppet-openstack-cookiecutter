@@ -272,5 +272,7 @@ class {{cookiecutter.project_name}}::keystone::authtoken(
     service_type                   => $service_type,
     interface                      => $interface,
   }
+
+  Keystone::Resource::Authtoken['{{cookiecutter.project_name}}_config'] -> Anchor['{{cookiecutter.project_name}}::service::begin']
 }
 

@@ -33,7 +33,6 @@ describe '{{cookiecutter.project_name}}::policy' do
           :file_group   => '{{cookiecutter.project_name}}',
           :file_format  => 'yaml',
           :purge_config => false,
-          :tag          => '{{cookiecutter.project_name}}',
         )
         is_expected.to contain_oslo__policy('{{cookiecutter.project_name}}_config').with(
           :enforce_scope        => false,
@@ -64,7 +63,6 @@ describe '{{cookiecutter.project_name}}::policy' do
           :file_group   => '{{cookiecutter.project_name}}',
           :file_format  => 'yaml',
           :purge_config => true,
-          :tag          => '{{cookiecutter.project_name}}',
         )
         is_expected.to contain_oslo__policy('{{cookiecutter.project_name}}_config').with(
           :enforce_scope        => false,

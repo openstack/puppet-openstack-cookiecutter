@@ -27,15 +27,6 @@ class {{cookiecutter.project_name}}::deps {
   ~> Service<| tag == '{{cookiecutter.project_name}}-service' |>
   ~> anchor { '{{cookiecutter.project_name}}::service::end': }
 
-  # all db settings should be applied and all packages should be installed
-  # before dbsync starts
-  Oslo::Db<||> -> Anchor['{{cookiecutter.project_name}}::dbsync::begin']
-
-  # policy config should occur in the config block also.
-  Anchor['{{cookiecutter.project_name}}::config::begin']
-  -> Openstacklib::Policy<| tag == '{{cookiecutter.project_name}}' |>
-  ~> Anchor['{{cookiecutter.project_name}}::config::end']
-
   # Installation or config changes will always restart services.
   Anchor['{{cookiecutter.project_name}}::install::end'] ~> Anchor['{{cookiecutter.project_name}}::service::begin']
   Anchor['{{cookiecutter.project_name}}::config::end']  ~> Anchor['{{cookiecutter.project_name}}::service::begin']

@@ -65,10 +65,14 @@ class {{cookiecutter.project_name}}::policy (
     file_group   => $::{{cookiecutter.project_name}}::params::group,
     file_format  => 'yaml',
     purge_config => $purge_config,
-    tag          => '{{cookiecutter.project_name}}',
   }
 
   create_resources('openstacklib::policy', { $policy_path => $policy_parameters })
+
+  # policy config should occur in the config block also.
+  Anchor['{{cookiecutter.project_name}}::config::begin']
+  -> Openstacklib::Policy[$policy_path]
+  -> Anchor['{{cookiecutter.project_name}}::config::end']
 
   oslo::policy { '{{cookiecutter.project_name}}_config':
     enforce_scope        => $enforce_scope,

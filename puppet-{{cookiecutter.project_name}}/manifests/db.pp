@@ -61,4 +61,8 @@ class {{cookiecutter.project_name}}::db (
     max_overflow            => $database_max_overflow,
     pool_timeout            => $database_pool_timeout,
   }
+
+  # all db settings should be applied and all packages should be installed
+  # before dbsync starts
+  Oslo::Db['{{cookiecutter.project_name}}_config'] -> Anchor['{{cookiecutter.project_name}}::dbsync::begin']
 }
