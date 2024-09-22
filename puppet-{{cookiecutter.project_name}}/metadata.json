@@ -11,15 +11,15 @@
         },
         {
             "name": "openstack/keystone",
-            "version_requirement": ">=22.0.0 <23.0.0"
+            "version_requirement": ">=24.0.0 <25.0.0"
         },
         {
             "name": "openstack/openstacklib",
-            "version_requirement": ">=22.0.0 <23.0.0"
+            "version_requirement": ">=24.0.0 <25.0.0"
         },
         {
             "name": "openstack/oslo",
-            "version_requirement": ">=22.0.0 <23.0.0"
+            "version_requirement": ">=24.0.0 <25.0.0"
         }
     ],
     "description": "Installs and configures OpenStack {{cookiecutter.project_name|capitalize}}.",
@@ -30,7 +30,7 @@
         {
             "operatingsystem": "Debian",
             "operatingsystemrelease": [
-                "11"
+                "12"
             ]
         },
         {
@@ -48,7 +48,7 @@
         {
             "operatingsystem": "Ubuntu",
             "operatingsystemrelease": [
-                "20.04"
+                "22.04"
             ]
         }
     ],
