@@ -37,10 +37,6 @@
 #   (Optional) File where logs should be stored.
 #   Defaults to '/var/log/{{cookiecutter.project_name}}/{{cookiecutter.project_name}}.log'
 #
-# [*watch_log_file*]
-#   (Optional) Uses logging handler designed to watch file system (boolean value).
-#   Defaults to $facts['os_service_default']
-#
 # [*logging_context_format_string*]
 #   (Optional) Format string to use for log messages with context.
 #   Defaults to $facts['os_service_default']
@@ -113,7 +109,6 @@ class {{cookiecutter.project_name}}::logging(
   $syslog_log_facility           = $facts['os_service_default'],
   $log_dir                       = '/var/log/{{cookiecutter.project_name}}',
   $log_file                      = '/var/log/{{cookiecutter.project_name}}/{{cookiecutter.project_name}}.log',
-  $watch_log_file                = $facts['os_service_default'],
   $debug                         = $facts['os_service_default'],
   $logging_context_format_string = $facts['os_service_default'],
   $logging_default_format_string = $facts['os_service_default'],
@@ -137,7 +132,6 @@ class {{cookiecutter.project_name}}::logging(
     use_journal                   => $use_journal,
     log_dir                       => $log_dir,
     log_file                      => $log_file,
-    watch_log_file                => $watch_log_file,
     debug                         => $debug,
     logging_context_format_string => $logging_context_format_string,
     logging_default_format_string => $logging_default_format_string,
