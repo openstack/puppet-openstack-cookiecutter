@@ -66,7 +66,7 @@ describe '{{cookiecutter.project_name}}::logging' do
       :use_stderr          => '<SERVICE DEFAULT>',
       :syslog_log_facility => '<SERVICE DEFAULT>',
       :log_dir             => '/var/log/{{cookiecutter.project_name}}',
-      :log_file            => '/var/log/{{cookiecutter.project_name}}/{{cookiecutter.project_name}}.log',
+      :log_file            => '<SERVICE DEFAULT>',
       :debug               => '<SERVICE DEFAULT>',
     )}
   end

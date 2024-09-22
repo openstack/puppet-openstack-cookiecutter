@@ -35,7 +35,7 @@
 #
 # [*log_file*]
 #   (Optional) File where logs should be stored.
-#   Defaults to '/var/log/{{cookiecutter.project_name}}/{{cookiecutter.project_name}}.log'
+#   Defaults to $facts['os_service_default']
 #
 # [*logging_context_format_string*]
 #   (Optional) Format string to use for log messages with context.
@@ -108,7 +108,7 @@ class {{cookiecutter.project_name}}::logging(
   $use_stderr                    = $facts['os_service_default'],
   $syslog_log_facility           = $facts['os_service_default'],
   $log_dir                       = '/var/log/{{cookiecutter.project_name}}',
-  $log_file                      = '/var/log/{{cookiecutter.project_name}}/{{cookiecutter.project_name}}.log',
+  $log_file                      = $facts['os_service_default'],
   $debug                         = $facts['os_service_default'],
   $logging_context_format_string = $facts['os_service_default'],
   $logging_default_format_string = $facts['os_service_default'],
