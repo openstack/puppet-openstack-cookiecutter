@@ -34,7 +34,7 @@ class {{cookiecutter.project_name}}::db::postgresql(
 
   include {{cookiecutter.project_name}}::deps
 
-  ::openstacklib::db::postgresql { '{{cookiecutter.project_name}}':
+  openstacklib::db::postgresql { '{{cookiecutter.project_name}}':
     password   => $password,
     dbname     => $dbname,
     user       => $user,

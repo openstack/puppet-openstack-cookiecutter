@@ -45,7 +45,7 @@ class {{cookiecutter.project_name}}::db::mysql(
 
   include {{cookiecutter.project_name}}::deps
 
-  ::openstacklib::db::mysql { '{{cookiecutter.project_name}}':
+  openstacklib::db::mysql { '{{cookiecutter.project_name}}':
     user          => $user,
     password      => $password,
     dbname        => $dbname,
