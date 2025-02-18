@@ -10,7 +10,6 @@ prepare_environment() {
   export GEM_BIN_DIR=$GEM_HOME/bin
   ruby <<EOF
 cmd = 'gem install bundler --no-document --verbose --bindir=${GEM_BIN_DIR}'
-cmd += ' -v 2.2.11'
 system(cmd)
 EOF
 
