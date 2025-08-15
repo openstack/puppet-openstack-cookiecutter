@@ -71,19 +71,14 @@ git commit --amend --author='Your Name <your@email>'"
 
 if [ -z "${testing}" ]; then
     tmp_var="/tmp/puppet-${proj}"
+    cookiecutter_bin=cookiecutter
 else
     tmp_var="${PWD}/puppet-${proj}"
     cookiecutter_conf="${PWD}/default-config.yaml"
-    set +e
-    which pip3 2>&1
-    ret=$?
-    set -e
-    if [ $ret -eq 0 ]; then
-      pip_bin=pip3
-    else
-      pip_bin=pip
-    fi
-    sudo $pip_bin install cookiecutter==1.7.0
+    python3 -m venv venv
+    pip_bin=${PWD}/venv/bin/pip
+    sudo $pip_bin install cookiecutter
+    cookiecutter_bin=${PWD}/venv/bin/cookiecutter
     cat > "${cookiecutter_conf}" <<EOF
 ---
 default_context:
@@ -101,10 +96,10 @@ pushd "${tmp_var}"
 #
 pushd cookiecutter
 if [ -z "${testing}" ]; then
-    cookiecutter "${cookiecutter_url}"
+    $cookiecutter_bin "${cookiecutter_url}"
 else
     # use current repo for CI, because we want to test current patch
-    cookiecutter --no-input --config-file="${cookiecutter_conf}" "../.."
+    $cookiecutter_bin --no-input --config-file="${cookiecutter_conf}" "../.."
 fi
 popd
 
