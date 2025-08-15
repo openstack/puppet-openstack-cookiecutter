@@ -23,7 +23,7 @@ class {{cookiecutter.project_name}}::db::sync(
   exec { '{{cookiecutter.project_name}}-db-sync':
     command     => "{{cookiecutter.project_name}}-manage db_sync ${extra_params}",
     path        => ['/bin', '/usr/bin'],
-    user        => $::{{cookiecutter.project_name}}::params::user,
+    user        => ${{cookiecutter.project_name}}::params::user,
     refreshonly => true,
     try_sleep   => 5,
     tries       => 10,
