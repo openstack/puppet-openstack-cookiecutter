@@ -5,8 +5,6 @@
 # === Parameters
 #
 class {{cookiecutter.project_name}} {
-
   include {{cookiecutter.project_name}}::deps
   include {{cookiecutter.project_name}}::params
-
 }

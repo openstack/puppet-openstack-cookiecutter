@@ -3,7 +3,6 @@
 # {{cookiecutter.project_name}} anchors and dependency management
 #
 class {{cookiecutter.project_name}}::deps {
-
   assert_private()
 
   # Setup anchors for install, config and service phases of the module.  These

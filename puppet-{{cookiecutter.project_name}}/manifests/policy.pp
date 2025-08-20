@@ -54,7 +54,6 @@ class {{cookiecutter.project_name}}::policy (
   $policy_dirs          = $facts['os_service_default'],
   Boolean $purge_config = false,
 ) {
-
   include {{cookiecutter.project_name}}::deps
   include {{cookiecutter.project_name}}::params
 
@@ -81,5 +80,4 @@ class {{cookiecutter.project_name}}::policy (
     policy_default_rule  => $policy_default_rule,
     policy_dirs          => $policy_dirs,
   }
-
 }

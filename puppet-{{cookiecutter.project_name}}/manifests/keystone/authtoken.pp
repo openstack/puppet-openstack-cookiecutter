@@ -191,7 +191,7 @@
 #  "public", "internal" or "admin".
 #  Defaults to $facts['os_service_default'].
 #
-class {{cookiecutter.project_name}}::keystone::authtoken(
+class {{cookiecutter.project_name}}::keystone::authtoken (
   $password,
   $username                       = '{{cookiecutter.project_name}}',
   $auth_url                       = 'http://localhost:5000',
@@ -230,7 +230,6 @@ class {{cookiecutter.project_name}}::keystone::authtoken(
   $service_type                   = $facts['os_service_default'],
   $interface                      = $facts['os_service_default'],
 ) {
-
   include {{cookiecutter.project_name}}::deps
 
   keystone::resource::authtoken { '{{cookiecutter.project_name}}_config':
@@ -275,4 +274,3 @@ class {{cookiecutter.project_name}}::keystone::authtoken(
 
   Keystone::Resource::Authtoken['{{cookiecutter.project_name}}_config'] -> Anchor['{{cookiecutter.project_name}}::service::begin']
 }
-

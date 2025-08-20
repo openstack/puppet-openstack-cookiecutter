@@ -12,11 +12,10 @@
 #   (Optional) Timeout for the execution of the db_sync
 #   Defaults to 300
 #
-class {{cookiecutter.project_name}}::db::sync(
+class {{cookiecutter.project_name}}::db::sync (
   $extra_params    = undef,
   $db_sync_timeout = 300,
 ) {
-
   include {{cookiecutter.project_name}}::deps
   include {{cookiecutter.project_name}}::params
 

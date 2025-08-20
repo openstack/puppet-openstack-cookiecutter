@@ -24,14 +24,13 @@
 #    (Optional) Privileges given to the database user.
 #    Default to 'ALL'
 #
-class {{cookiecutter.project_name}}::db::postgresql(
+class {{cookiecutter.project_name}}::db::postgresql (
   $password,
   $dbname     = '{{cookiecutter.project_name}}',
   $user       = '{{cookiecutter.project_name}}',
   $encoding   = undef,
   $privileges = 'ALL',
 ) {
-
   include {{cookiecutter.project_name}}::deps
 
   openstacklib::db::postgresql { '{{cookiecutter.project_name}}':
@@ -45,5 +44,4 @@ class {{cookiecutter.project_name}}::db::postgresql(
   Anchor['{{cookiecutter.project_name}}::db::begin']
   ~> Class['{{cookiecutter.project_name}}::db::postgresql']
   ~> Anchor['{{cookiecutter.project_name}}::db::end']
-
 }

@@ -1,7 +1,6 @@
 # Parameters for puppet-{{cookiecutter.project_name}}
 #
 class {{cookiecutter.project_name}}::params {
-
   assert_private()
 
   include {{cookiecutter.project_name}}::deps
@@ -18,6 +17,5 @@ class {{cookiecutter.project_name}}::params {
     default: {
       fail("Unsupported osfamily: ${facts['os']['family']}")
     }
-
   } # Case $facts['os']['family']
 }

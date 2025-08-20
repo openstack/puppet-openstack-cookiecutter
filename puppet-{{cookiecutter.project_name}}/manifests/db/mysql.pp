@@ -33,7 +33,7 @@
 #   Only used with mysql modules >= 2.2.
 #   Defaults to 'utf8_general_ci'
 #
-class {{cookiecutter.project_name}}::db::mysql(
+class {{cookiecutter.project_name}}::db::mysql (
   String[1] $password,
   $dbname        = '{{cookiecutter.project_name}}',
   $user          = '{{cookiecutter.project_name}}',
@@ -42,7 +42,6 @@ class {{cookiecutter.project_name}}::db::mysql(
   $collate       = 'utf8_general_ci',
   $allowed_hosts = undef
 ) {
-
   include {{cookiecutter.project_name}}::deps
 
   openstacklib::db::mysql { '{{cookiecutter.project_name}}':
@@ -58,5 +57,4 @@ class {{cookiecutter.project_name}}::db::mysql(
   Anchor['{{cookiecutter.project_name}}::db::begin']
   ~> Class['{{cookiecutter.project_name}}::db::mysql']
   ~> Anchor['{{cookiecutter.project_name}}::db::end']
-
 }

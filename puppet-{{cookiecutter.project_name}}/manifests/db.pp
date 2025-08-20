@@ -48,7 +48,6 @@ class {{cookiecutter.project_name}}::db (
   $database_max_overflow            = $facts['os_service_default'],
   $database_pool_timeout            = $facts['os_service_default'],
 ) {
-
   include {{cookiecutter.project_name}}::deps
 
   oslo::db { '{{cookiecutter.project_name}}_config':

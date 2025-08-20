@@ -23,7 +23,6 @@
 class {{cookiecutter.project_name}}::config (
   Hash ${{cookiecutter.project_name}}_config = {},
 ) {
-
   include {{cookiecutter.project_name}}::deps
 
   create_resources('{{cookiecutter.project_name}}_config', ${{cookiecutter.project_name}}_config)

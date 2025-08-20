@@ -97,7 +97,6 @@ class {{cookiecutter.project_name}}::keystone::auth (
   $admin_url           = 'http://127.0.0.1:FIXME',
   $internal_url        = 'http://127.0.0.1:FIXME',
 ) {
-
   include {{cookiecutter.project_name}}::deps
 
   Keystone::Resource::Service_identity['{{cookiecutter.project_name}}'] -> Anchor['{{cookiecutter.project_name}}::service::end']
@@ -122,5 +121,4 @@ class {{cookiecutter.project_name}}::keystone::auth (
     internal_url        => $internal_url,
     admin_url           => $admin_url,
   }
-
 }
