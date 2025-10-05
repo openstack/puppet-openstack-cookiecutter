@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -45,7 +44,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-copyright = u'{{cookiecutter.year}}, Puppet OpenStack Developers'
+copyright = '{{cookiecutter.year}}, Puppet OpenStack Developers'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -185,8 +184,8 @@ htmlhelp_basename = 'puppet-{{cookiecutter.project_name}}ReleaseNotesdoc'
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'puppet-{{cookiecutter.project_name}}ReleaseNotes.tex', u'puppet-{{cookiecutter.project_name}} Release Notes Documentation',
-   u'{{cookiecutter.year}}, Puppet OpenStack Developers', 'manual'),
+  ('index', 'puppet-{{cookiecutter.project_name}}ReleaseNotes.tex', 'puppet-{{cookiecutter.project_name}} Release Notes Documentation',
+   '{{cookiecutter.year}}, Puppet OpenStack Developers', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -215,8 +214,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'puppet-{{cookiecutter.project_name}}releasenotes', u'puppet-{{cookiecutter.project_name}} Release Notes Documentation',
-     [u'{{cookiecutter.year}}, Puppet OpenStack Developers'], 1)
+    ('index', 'puppet-{{cookiecutter.project_name}}releasenotes', 'puppet-{{cookiecutter.project_name}} Release Notes Documentation',
+     ['{{cookiecutter.year}}, Puppet OpenStack Developers'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -229,8 +228,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'puppet-{{cookiecutter.project_name}}ReleaseNotes', u'puppet-{{cookiecutter.project_name}} Release Notes Documentation',
-   u'{{cookiecutter.year}}, Puppet OpenStack Developers', 'puppet-{{cookiecutter.project_name}}ReleaseNotes', 'One line description of project.',
+  ('index', 'puppet-{{cookiecutter.project_name}}ReleaseNotes', 'puppet-{{cookiecutter.project_name}} Release Notes Documentation',
+   '{{cookiecutter.year}}, Puppet OpenStack Developers', 'puppet-{{cookiecutter.project_name}}ReleaseNotes', 'One line description of project.',
    'Miscellaneous'),
 ]
 
